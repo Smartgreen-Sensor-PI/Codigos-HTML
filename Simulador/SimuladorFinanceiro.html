@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SIMULADOR</title>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1><SPan  class="main-color">Simulador Financeiro 🍅</SPan></h1>
+
+        <div style="width: 100px; height: 100px; border-radius: 50%;">
+            <img style="width: 500%;  height: 200%; margin-top: 20px;"
+                src="https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="">
+        </div><br><br><br><br><br><br>
+
+        <div>
+            <h1 class="text title">
+                CALCULE: <span class="main-color">SEU PREJUÍZO</span>
+            </h1>
+
+        </div>
+
+        <h3 <span class="text-color"</span></span>Saiba os prejuízos que você terá por safra, caso não invista no nosso projeto:</h3>
+
+        <!--4 campos de inserir e um botão-->
+        Quantos m² de solo fértil possui sua estufa?: <br><input id="ipt_metro2" placeholder="Ex: 10"><br><br>
+        Qual a média de produtividade por pé de tomate na sua estufa(em kg)?: <br> <input id="ipt_produtividade"
+            placeholder="Ex: 2"><br><br>
+        Tempereratura da Estufa(Em graus): <br><input type="text" id="ipt_temp_atual" placeholder="Ex: 30"><br><br>
+        Umidade da Estufa:(Em %): <br><input type="text" id="ipt_umidade_atual" placeholder="Ex: 20"><br><br>
+        Valor de venda do tomate (R$ por kg): <br><input id="ipt_venda" placeholder="Ex: 6"><br><br>
+
+        <br><button onclick="tomate()">CALCULE SEU PREJUÍZO</button>
+
+        <h4 <span class="text-color"</span></span>(Caso você queira ver seu prejuízo e seu lucro sendo acumulados por safra, clique novamente no botão.)</h4>
+        <br><br>
+        <div id="div_msg"></div>
+
+    </div>
+
+
+</body>
+<script>
+
+    let safra = 0;
+    let acm_prejuizo = 0;
+    let acm_total = 0;
+
+    function tomate() {
+
+        let venda = Number(ipt_venda.value.trim());
+        let metro = Number(ipt_metro2.value.trim());
+        let produtividade = Number(ipt_produtividade.value.trim());
+        let temperatura = Number(ipt_temp_atual.value.trim());
+        let umidade = Number(ipt_umidade_atual.value.trim());
+        // metro * 2 (1 m2 equivale a 2 pés de tomate)
+        let plantas = metro * 2;
+        // podemos colocar nesse calculo a media de venda por caixa que é 22kg a 25
+        // também podemos colocar que uma safra inteira se da em 4 meses, que são os dados que temos
+        let total = (plantas * produtividade) * venda;
+        let porcentagem_perda = 0;
+        let porcentagem_umidade = 0;
+
+
+        if (temperatura > 38 || temperatura < 8) {
+            porcentagem_perda = 1; // perda de 100%
+        } else if (temperatura > 28 || temperatura < 15) {
+            porcentagem_perda = 0.30; // perda (entre 20% e 40%)
+        } else {
+            porcentagem_perda = 0; // sem perda
+        }
+
+        if (umidade > 90) {
+            porcentagem_umidade = 1;
+        } else if (umidade >= 60 && umidade <= 70) {
+            porcentagem_umidade = 0;
+        } else {
+            porcentagem_umidade = 0.20;
+        }
+
+        let prejuizo = total * (porcentagem_perda + porcentagem_umidade);
+        safra += 1;
+        acm_prejuizo += prejuizo;
+        acm_total += total;
+
+
+        div_msg.innerHTML += `<b <span class="text-color"</span> A cada ${safra} safra, com a estufa controlada (temperatura ideal) você lucraria R$${acm_total.toFixed(2)} no total. <br>
+        Com a temperatura atual de ${temperatura}°C, e a umidade atual de ${umidade}%, sua perda é de ${porcentagem_perda * 100}%. <br>
+        Sem o monitoramento, você sofre um prejuízo acumulado de R$${acm_prejuizo.toFixed(2)} na sua plantação. </b>
+        <br>
+        <span class="text-color"</span>---------------------------------------------------------------------------------------------
+        <br>`;
+    }
+</script>
+
+</html>

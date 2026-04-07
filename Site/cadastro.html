@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastro - SmartGreen🍀</title>
+</head>
+
+<body class="tela" style="background-color: #34492a;">
+
+    <div class="caixa-login">
+        <h1>Smart Green 🍀</h1>
+
+        <h2><i>Complete seu cadastro</i></h2>
+
+        <h3>Digite seu usuário:</h3>
+        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+
+        <h3>Digite seu e-mail:</h3>
+        <input class="inputs" type="text" id="ipt_email" placeholder="Seu e-mail">
+
+        <h3>Digite sua senha:</h3>
+        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+        <br>
+        <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+        let login = ipt_login.value;
+        let email = ipt_email.value;
+        let senha = ipt_senha.value;
+
+        if (login != '' && email != '' && senha != '') {
+            alert('Cadastro realizado com sucesso');
+        } else {
+            alert('Necessário preencher todos os dados');
+        }
+    }
+</script>

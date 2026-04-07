@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - SmartGreen🍀</title>
+</head>
+<body class="tela" style="background-color: #34492a;">
+
+    <div class="caixa-login">
+        <h1>Seja bem-vindo a</h1>
+        <h2>SmartGreen🍀</h2>
+        <h3>Digite seu usuário:</h3>
+        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+
+        <h3>Digite sua senha:</h3>
+        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+
+        <p>Não possui cadastro? <a href="cadastro.html">Clique aqui</a></p>
+
+        <button class="btn-verde" onclick="entrar()">Entrar</button>
+    </div>
+
+</body>
+</html>
+<script>
+
+    function entrar() {
+        let login = ipt_login.value
+        let senha = ipt_senha.value
+
+        if (login == "admin" && senha == 1234) {
+            alert('Seja bem-vindo!')
+        }
+        else{
+            alert('Login ou senha incorreto')
+        }
+    }
+</script>

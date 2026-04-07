@@ -1,0 +1,28 @@
+
+	.card{
+		width: 500px; 
+		height: fit-content; 
+		background-color: rgb(36, 73, 53) ;
+		border-radius: 25px;
+		border: solid 2px rgb(224, 35, 1);
+		margin: 20px;
+		padding: 25px;
+	}
+
+	.text{
+		font-family: monospace;
+	}
+
+	.title{
+		font-size: 30px;
+	}
+
+	.msg{
+		font-size: 15px;
+	}
+	.main-color{
+		color: rgb(224, 35, 1);
+	}
+	.text-color{
+		color: rgb(224, 210, 208);
+	}
