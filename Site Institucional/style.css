@@ -1,0 +1,206 @@
+@import url(https://fonts.googleapis.com/css2?family=Miranda+Sans:ital,wght@0,400..700;1,400..700&display=swap);
+
+body {
+  font-family: "Miranda Sans", sans-serif;
+}
+
+.tela {
+  height: 100vh;
+  background: linear-gradient(rgba(18, 146, 46, 0.6), rgba(132, 11, 11, 0.826)),
+    url("Imagens/Estufa de tomates à luz suave.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.caixa-login {
+  background-color: white;
+  padding: 70px;
+  border-radius: 10px;
+  width: 470px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 500px;
+  gap: 10px;
+  box-shadow: 0 0 10px #0000001A;
+  height: 500px;
+}
+
+.caixa-cadastro {
+  background-color: white;
+  padding: 35px;
+  border-radius: 10px;
+  width: 470px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 500px;
+  gap: 10px;
+  box-shadow: 0 0 10px #0000001A;
+  height: 600 px;
+
+}
+
+
+
+.inputs {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-verde {
+  padding: 10px;
+  background-color: #34492a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.home nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.home .menu-esquerda a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #4b5d4b;
+}
+
+.home .menu-direita span {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.home .hero {
+  height: 100vh;
+  background: url("Imagens/tomate.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+
+}
+
+.home .conteudo {
+  background: #FFFFFF99;
+  padding: 30px;
+}
+
+.home h1 {
+  font-size: 60px;
+  color: #34492a;
+}
+
+.home h1 span {
+  color: green;
+}
+
+.home p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+.card {
+  width: 500px;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  border: solid 2px rgb(165, 73, 57);
+  margin: 20px;
+  padding: 25px;
+}
+
+.text {
+  font-family: monospace;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.msg {
+  font-size: 15px;
+}
+
+.main-color {
+  color: #34492a;
+}
+
+.text-color {
+  color: rgb(10, 2, 0);
+}
+
+.local {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.home {
+  margin: 0;
+  overflow: auto;
+  min-height: 100vh;
+
+
+}
+
+.home .fundo {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+
+
+.nos {
+  padding: 80px;
+}
+
+.titulo{
+  margin-top: 0;
+}
+
+.conteudo2 {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+
+.quadro {
+  width: 500px;
+  border: 8px solid #34492a;
+  border-radius: 20px;
+  overflow: hidden;
+
+}
+
+.quadro img {
+  max-width: 100%;
+  display: block;
+}
+
+.caixa-texto {
+  background-color: rgba(160, 243, 170, 0.493);
+  padding: 10px;
+  border-radius: 10px;
+  width: 470px;
+  box-shadow: 0 0 10px #0000001A;
+  margin-left: 250px;
+  margin-top: 20px;
+}

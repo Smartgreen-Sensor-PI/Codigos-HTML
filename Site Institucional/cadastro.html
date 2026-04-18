@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Cadastro - SmartGreen🍀</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
 </head>
 
-<body class="tela" style="background-color: #34492a;">
+<body class="tela" style="background-color: #ece5e5;">
 
-    <div class="caixa-login">
+    <div class="caixa-cadastro">
         <h1>Smart Green 🍀</h1>
 
         <h2><i>Complete seu cadastro</i></h2>
 
-        <h3>Digite seu usuário:</h3>
+        <div class="local"><h3>Digite seu usuário:</h3>
         <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
 
         <h3>Digite seu e-mail:</h3>
@@ -23,9 +24,15 @@
 
         <h3>Digite sua senha:</h3>
         <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
-        <br>
+
+        <h3>Confirme a sua senha:</h3>
+        <input class="inputs" type="password" id="ipt_confirmacao" placeholder="Confirme a senha">
+        <br></div>
+
         <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
     </div>
+
+
 
 </body>
 
@@ -36,8 +43,9 @@
         let login = ipt_login.value;
         let email = ipt_email.value;
         let senha = ipt_senha.value;
+        let confirmacao = ipt_confirmacao.value;
 
-        if (login != '' && email != '' && senha != '') {
+        if (login != '' && email != '' && senha != '' && confirmacao!='') {
             alert('Cadastro realizado com sucesso');
         } else {
             alert('Necessário preencher todos os dados');
