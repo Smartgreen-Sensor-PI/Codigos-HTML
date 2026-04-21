@@ -1,7 +1,18 @@
 @import url(https://fonts.googleapis.com/css2?family=Miranda+Sans:ital,wght@0,400..700;1,400..700&display=swap);
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: fit-content;
+}
+
 body {
   font-family: "Miranda Sans", sans-serif;
+}
+
+.nav {
+  padding-top: 80px;
 }
 
 .tela {
@@ -67,6 +78,17 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px 40px;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .home .menu-esquerda a {
@@ -154,10 +176,7 @@ body {
 
 .home {
   margin: 0;
-  overflow: auto;
   min-height: 100vh;
-
-
 }
 
 .home .fundo {
@@ -166,19 +185,22 @@ body {
 }
 
 
-
 .nos {
   padding: 80px;
 }
 
-.titulo{
-  margin-top: 0;
+.titulo {
+  scroll-margin-top: 100px;
 }
 
 .conteudo2 {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 
@@ -201,6 +223,118 @@ body {
   border-radius: 10px;
   width: 470px;
   box-shadow: 0 0 10px #0000001A;
-  margin-left: 250px;
-  margin-top: 20px;
+
+}
+
+.divisor {
+  width: 3px;
+  background: linear-gradient(to bottom, #66bb6a, #1b5e20);
+  border-radius: 10px;
+  align-self: stretch;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ===== DASHBOARD CSS ===== */
+
+
+.dashboard.corpo {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(52, 131, 36, 0.733),
+      rgba(52, 131, 36, 0.788)),
+    url("https://github.com/Smartgreen-Sensor-PI/Documentos-Projeto-PI/blob/main/Site%20Institucional/Imagens/tomate.png?raw=true");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+  height: fit-content;
+}
+
+
+.dashboard .cards {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+.dashboard .kpi {
+  width: 300px;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  border: solid 2px rgb(15, 37, 11);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard .divisao_kpi {
+
+  width: 280px;
+  height: fit-content;
+  background-color: rgba(246, 255, 246, 0.505);
+  border-radius: 20px;
+  border: solid 2px rgba(125, 172, 125, 0.535);
+  padding: 10px;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow: auto;
+  display: flex;
+
+}
+
+
+.dashboard .containers {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  justify-content: center;
+}
+
+
+.dashboard .container {
+  width: 40vw;
+  border-radius: 15px;
+  border: 1px solid rgb(4, 67, 33);
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.dashboard .DASH {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  font-size: 50px;
+  color: #ffffff;
+}
+
+.dashboard .title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #d61414;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.dashboard .text {
+  font-size: 17px;
+  color: #000000;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow: auto;
+  display: flex;
+
 }

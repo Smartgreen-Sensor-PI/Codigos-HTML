@@ -1,0 +1,106 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: fit-content;
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(52, 131, 36, 0.733),
+  rgba(52, 131, 36, 0.788)),
+  url("https://github.com/Smartgreen-Sensor-PI/Documentos-Projeto-PI/blob/main/Site%20Institucional/Imagens/tomate.png?raw=true");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+  height: fit-content;
+}
+
+
+.cards {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+.kpi {
+  width: 300px;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  border: solid 2px rgb(15, 37, 11);
+  padding: 10px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  justify-content: center;
+}
+
+.divisao_kpi{
+  
+  width: 280px;
+  height: fit-content;
+  background-color: rgba(246, 255, 246, 0.505);
+  border-radius: 20px;
+  border: solid 2px rgba(125, 172, 125, 0.535);
+  padding: 10px;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; 
+  overflow: auto;
+  display: flex;
+  
+  
+
+}
+
+
+.containers {
+  display: flex;
+  gap: 20px;
+  margin: 20px;
+  justify-content: center;
+}
+
+
+.container {
+  width: 40vw;
+  border-radius: 15px;
+  border: 1px solid rgb(4, 67, 33);
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.DASH {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  font-size: 50px;
+  color: #ffffff;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #d61414;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  
+}
+
+.text {
+  font-size: 17px;
+  color: #000000;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; 
+  overflow: auto;
+  display: flex;
+
+}

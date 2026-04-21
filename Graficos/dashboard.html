@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard-SmartGreen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../Site Institucional/Imagens/aba.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body class="dashboard">
+
+
+
+    <h2 class="DASH">DashBoard-SmartGreen🌱</h2>
+
+    <div class="cards">
+        <div class="kpi">
+            <h1 class="title">
+                ALERTA DE TEMPERATURA!!
+            </h1>
+            <div class="divisao_kpi">
+                <p class="text">
+                </p>
+                Às 13h do dia 14/04 a temperatura registrada foi de 37°C, muito elevada! <br> <br>
+                </p>
+            </div>
+
+        </div>
+        <div class="kpi">
+            <h1 class="title">
+                ALERTA DE UMIDADE!!
+            </h1>
+            <div class="divisao_kpi">
+                <p class="text">
+                    Às 13h do dia 14/04 a umidade registrada foi de 45%, muito baixa! <br> <br>
+                </p>
+            </div>
+
+        </div>
+        <div class="kpi">
+            <h1 class="title" style="color: black;">
+                MÉDIA DO MÊS DE MARÇO:
+            </h1>
+            <div class="divisao_kpi">
+                <p class="text">
+                    Temperatura: 30°C
+                </p>
+            </div>
+            <div class="divisao_kpi">
+                <p class="text">
+                    Umidade: 60%
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="containers">
+        <div class="container">
+            <canvas id="grafico"></canvas>
+        </div>
+        <div class="container">
+            <canvas id="grafico02"></canvas>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    const grafico = document.getElementById('grafico');
+
+    new Chart(grafico, {
+        type: 'line',
+        data: {
+
+            labels: ['07:00', '10:00', '13:00', '16:00', '19:00', '22:00'],
+            datasets: [
+                {
+                    label: 'Temperatura 🌡️',
+                    data: [20, 30, 37, 27, 29, 26],
+                    borderWidth: 2,
+                    borderColor: '#ff6b6b',
+                    backgroundColor: 'rgba(255, 107, 107, 0.15)',
+                    fill: false
+                },
+                {
+                    label: 'Umidade 💧',
+                    data: [79, 60, 45, 52, 50, 70],
+                    borderWidth: 2,
+                    borderColor: '#4dabf7',
+                    backgroundColor: 'rgba(77, 171, 247, 0.15)',
+                    fill: false
+                }
+            ]
+        },
+
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'black',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: 20,
+                        boxWidth: 20
+                    }
+                }
+            },
+
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Hora do dia ⏰',
+                        color: 'black',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: 'black'
+                    }
+                },
+
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Temperatura (°C) / Umidade (%)',
+                        color: 'black',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: 'black'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const grafico02 = document.getElementById('grafico02');
+
+    new Chart(grafico02, {
+        type: 'bar',
+        data: {
+
+            labels: ['Temperatura      /      Umidade'],
+            datasets: [
+                {
+                    label: 'Temperatura 🌡️',
+                    data: [29],
+                    borderWidth: 2,
+                    borderColor: '#ff6b6b',
+                    backgroundColor: 'rgba(255, 107, 107, 0.15)',
+                    fill: false
+                },
+                {
+                    label: 'Umidade 💧',
+                    data: [59],
+                    borderWidth: 2,
+                    borderColor: '#4dabf7',
+                    backgroundColor: 'rgba(77, 171, 247, 0.15)',
+                    fill: false
+                }
+            ]
+        },
+
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'black',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: 20,
+                        boxWidth: 20
+                    }
+                }
+            },
+
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Média de temp e umi do dia hoje',
+                        color: 'black',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: 'black'
+                    }
+                },
+
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Valores',
+                        color: 'black',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        color: 'black'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+</script>
+
+</html>
