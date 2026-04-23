@@ -16,23 +16,32 @@
 
         <h2><i>Complete seu cadastro</i></h2>
 
-        <div class="local"><h3>Digite seu usuário:</h3>
-        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+        <div class="local">
+            <h3>Digite seu usuário:</h3>
+            <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
 
-        <h3>Digite seu e-mail:</h3>
-        <input class="inputs" type="text" id="ipt_email" placeholder="Seu e-mail">
+            <h3>Digite seu e-mail:</h3>
+            <input class="inputs" type="text" id="ipt_email" placeholder="Seu e-mail">
 
-        <h3>Digite sua senha:</h3>
-        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+            <h3>Digite sua senha:</h3>
+            <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
 
-        <h3>Confirme a sua senha:</h3>
-        <input class="inputs" type="password" id="ipt_confirmacao" placeholder="Confirme a senha">
-        <br></div>
+            <h3>Confirme a sua senha:</h3>
+            <input class="inputs" type="password" id="ipt_senhaConf" placeholder="Confirme a senha">
+            <br>
+        </div>
+
+        <div class="local">
+
+            <p style="font-size: 14px; margin-top: 10px;">
+                Já possui uma conta? <a href="login.html" style="color: #34492a; font-weight: bold;">Faça login</a>
+            </p>
+        </div>
 
         <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
     </div>
 
-
+    <a id="voltarLogin" href="login.html" style="display: none;"></a>
 
 </body>
 
@@ -43,12 +52,63 @@
         let login = ipt_login.value;
         let email = ipt_email.value;
         let senha = ipt_senha.value;
-        let confirmacao = ipt_confirmacao.value;
+        let senhaConfirmada = ipt_senhaConf.value;
 
-        if (login != '' && email != '' && senha != '' && confirmacao!='') {
-            alert('Cadastro realizado com sucesso');
-        } else {
-            alert('Necessário preencher todos os dados');
+        let qtdNumero = 0;
+        let caracterEspecial = '!@#$%&*'
+        let possuiCaracEspecial = false;
+        let ax_erro = false;
+
+        if (login == '') {
+            alert(`O campo de usuário deve ser preenchido`)
+            ax_erro = true;
         }
+        if (email == '') {
+            alert(`O campo de Email deve ser preenchido`)
+            ax_erro = true;
+        }
+        if (senha == '') {
+            alert(`O campo de senha deve ser preenchido`)
+            ax_erro = true;
+        }
+        if (senhaConfirmada != senha) {
+            alert(`As senhas não coincidem`)
+            ax_erro = true;
+        }
+        if (email.indexOf(`@`) < 0) {
+            alert(`Insira um valor de email válido`)
+            ax_erro = true;
+        }
+
+        for (let ind = 0; ind < senha.length; ind++) {
+            let caracAtual = senha[ind];
+
+            if(caracAtual >= 0 && caracAtual <= 9){
+                qtdNumero++;
+            }
+            if(caracterEspecial.indexOf(caracAtual) >= 0){
+                possuiCaracEspecial = true;
+            }
+        }
+
+        if(senha.length < 8){
+            alert(`Senha Muito Curta! Insira ao menos 8 caracteres`)
+            ax_erro = true;
+        }
+        if(qtdNumero < 2){
+            alert(`Senha Fraca! Insira ao menos 2 números`)
+            ax_erro = true;
+        }
+        if(possuiCaracEspecial == false){
+            alert(`Senha Fraca! Insira ao menos 1 caracter especial (!@#$%&*)`)
+            ax_erro = true;
+        }
+
+        if (ax_erro == false) {
+            alert(`Login realizado com sucesso!`)
+            document.getElementById('voltarLogin').click()
+        }
+
+
     }
 </script>
