@@ -3,11 +3,13 @@
 
 body {
   font-family: "Miranda Sans", sans-serif;
+}
+
+.corpo{
   margin: 0;
   display: flex;
   justify-content: center;
 }
-
 
 .nav {
   padding-top: 80px;
