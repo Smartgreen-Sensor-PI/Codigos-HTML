@@ -14,13 +14,9 @@
 
     <div class="card">
 
-        <h1><SPan class="main-color">Simulador Financeiro 🍅</SPan></h1>
+        <h1><span class="main-color">Simulador Financeiro 🍅</SPan></h1>
 
-        <div style="width: 100px; height: 100px; border-radius: 50%;">
-            <img style="width: 500%;  height: 200%; margin-top: 20px;"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl4ssmbs2qHNdqLZRybT8X-9dFVnj8u2zR8A&s"
-                alt="">
-        </div><br><br><br><br><br><br>
+
 
         <div>
             <h1 class="text title">
@@ -29,26 +25,27 @@
 
         </div>
 
-        <h3 <span class="text-color" </span></span>Saiba os prejuízos que você terá por safra, caso não invista no nosso
-            projeto:</h3>
+        <h3 class="text-color">
+            Saiba os prejuízos que você terá por safra, caso não invista no nosso projeto:
+        </h3>
 
         <!--4 campos de inserir e um botão-->
         <b>Quantos m² de solo fértil possui sua estufa?:</b> <br>
         <input style="background-color: #a7c09b;" id="ipt_metro2" placeholder="Ex: 10"><br><br>
         <b>Qual a média de produtividade por pé de tomate na sua estufa(em kg)?:</b> <br>
-         <input style="background-color: #a7c09b;" id="ipt_produtividade" placeholder="Ex: 2"><br><br>
+        <input style="background-color: #a7c09b;" id="ipt_produtividade" placeholder="Ex: 2"><br><br>
         <b>Tempereratura da Estufa(Em graus):</b> <br>
         <input style="background-color: #a7c09b;" type="text" id="ipt_temp_atual" placeholder="Ex: 30"><br><br>
         <b>Umidade da Estufa:(Em %):</b> <br>
         <input style="background-color: #a7c09b;" type="text" id="ipt_umidade_atual" placeholder="Ex: 20"><br><br>
         <b>Valor de venda do tomate (R$ por kg):</b> <br>
-        <input style="background-color: #a7c09b;"id="ipt_venda" placeholder="Ex: 6"><br><br>
+        <input style="background-color: #a7c09b;" id="ipt_venda" placeholder="Ex: 6"><br><br>
 
         <p style="background-color: #a7c09b;">VOLTAR AO INICIO? <a href="index.html">Clique aqui</a></p>
 
         <br><button onclick="tomate()">CALCULE SEU PREJUÍZO</button> <button onclick="limpar()">LIMPAR</button>
 
-        <h4 <span class="text-color" </span></span>(Caso você queira ver seu prejuízo e seu lucro sendo acumulados por
+        <h4 class="text-color"> (Caso você queira ver seu prejuízo e seu lucro sendo acumulados por
             safra, clique novamente no botão.)</h4>
         <br><br>
         <div id="div_msg"></div>
@@ -111,23 +108,21 @@
     }
 
 
-    
-        function limpar() {
-            // Limpar os inputs
-            ipt_venda.value = "";
-            ipt_metro2.value = "";
-            ipt_produtividade.value = "";
-            ipt_temp_atual.value = "";
-            ipt_umidade_atual.value = "";
 
-            // Resetar variáveis acumuladoras
-            safra = 0;
-            acm_prejuizo = 0;
-            acm_total = 0;
+    function limpar() {
+        // Limpar os inputs
+        ipt_venda.value = "";
+        ipt_metro2.value = "";
+        ipt_produtividade.value = "";
+        ipt_temp_atual.value = "";
+        ipt_umidade_atual.value = "";
 
-            // Limpar a div de resultado
-            div_msg.innerHTML = "";
-        }
+        // Resetar variáveis acumuladoras
+        safra = 0;
+        acm_prejuizo = 0;
+        acm_total = 0;
+
+        // Limpar a div de resultado
+        div_msg.innerHTML = "";
+    }
 </script>
-
-</html>
