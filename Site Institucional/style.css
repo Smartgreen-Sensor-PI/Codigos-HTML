@@ -5,7 +5,7 @@ body {
   font-family: "Miranda Sans", sans-serif;
 }
 
-.corpo{
+.corpo {
   margin: 0;
   display: flex;
   justify-content: center;
@@ -16,17 +16,18 @@ body {
 }
 
 .tela {
-  height: 100vh;
-  background: linear-gradient(rgba(18, 146, 46, 0.6), rgba(132, 11, 11, 0.826)),
-    url("Imagens/Estufa de tomates à luz suave.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  background-image: 
+    linear-gradient(
+      rgba(18, 146, 46, 0.7),
+      rgba(132, 11, 11, 0.9)
+    ),
+    url("Imagens/Estufa\ de\ tomates\ à\ luz\ suave.png");
 
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
 }
 
 .caixa-login {

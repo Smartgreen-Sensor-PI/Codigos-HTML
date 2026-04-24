@@ -48,67 +48,59 @@
 </html>
 
 <script>
-    function cadastrar() {
-        let login = ipt_login.value;
-        let email = ipt_email.value;
-        let senha = ipt_senha.value;
-        let senhaConfirmada = ipt_senhaConf.value;
+function cadastrar() {
+    let login = ipt_login.value;
+    let email = ipt_email.value;
+    let senha = ipt_senha.value;
+    let senhaConfirmada = ipt_senhaConf.value;
 
-        let qtdNumero = 0;
-        let caracterEspecial = '!@#$%&*'
-        let possuiCaracEspecial = false;
-        let ax_erro = false;
+    let qtdNumero = 0;
+    let caracterEspecial = '!@#$%&*';
+    let possuiCaracEspecial = false;
+    let ax_erro = false;
 
-        if (login == '') {
-            alert(`O campo de usuário deve ser preenchido`)
-            ax_erro = true;
-        }
-        if (email == '') {
-            alert(`O campo de Email deve ser preenchido`)
-            ax_erro = true;
-        }
-        if (senha == '') {
-            alert(`O campo de senha deve ser preenchido`)
-            ax_erro = true;
-        }
-        if (senhaConfirmada != senha) {
-            alert(`As senhas não coincidem`)
-            ax_erro = true;
-        }
-        if (email.indexOf(`@`) < 0) {
-            alert(`Insira um valor de email válido`)
-            ax_erro = true;
-        }
-
-        for (let ind = 0; ind < senha.length; ind++) {
-            let caracAtual = senha[ind];
-
-            if(caracAtual >= 0 && caracAtual <= 9){
-                qtdNumero++;
-            }
-            if(caracterEspecial.indexOf(caracAtual) >= 0){
-                possuiCaracEspecial = true;
-            }
-        }
-
-        if(senha.length < 8){
-            alert(`Senha Muito Curta! Insira ao menos 8 caracteres`)
-            ax_erro = true;
-        }
-        if(qtdNumero < 2){
-            alert(`Senha Fraca! Insira ao menos 2 números`)
-            ax_erro = true;
-        }
-        if(possuiCaracEspecial == false){
-            alert(`Senha Fraca! Insira ao menos 1 caracter especial (!@#$%&*)`)
-            ax_erro = true;
-        }
-
-        if (ax_erro == false) {
-            alert(`Login realizado com sucesso!`)
-            document.getElementById('voltarLogin').click()
-        }
-
-
+    if (login == '') {
+        alert('O campo de usuário deve ser preenchido');
+        ax_erro = true;
+    } else if (email == '') {
+        alert('O campo de Email deve ser preenchido');
+        ax_erro = true;
+    } else if (senha == '') {
+        alert('O campo de senha deve ser preenchido');
+        ax_erro = true;
+    } else if (senhaConfirmada != senha) {
+        alert('As senhas não coincidem');
+        ax_erro = true;
+    } else if (email.indexOf('@') < 0) {
+        alert('Insira um email válido');
+        ax_erro = true;
     }
+
+    for (let ind = 0; ind < senha.length; ind++) {
+        let caracAtual = senha[ind];
+
+        if (caracAtual >= '0' && caracAtual <= '9') {
+            qtdNumero++;
+        } else if (caracterEspecial.indexOf(caracAtual) >= 0) {
+            possuiCaracEspecial = true;
+        }
+    }
+
+
+    if (senha.length < 8) {
+        alert('Senha muito curta! Mínimo de 8 caracteres');
+        ax_erro = true;
+    } else if (qtdNumero < 2) {
+        alert('Senha fraca! Insira ao menos 2 números');
+        ax_erro = true;
+    } else if (!possuiCaracEspecial) {
+        alert('Senha fraca! Insira ao menos 1 caractere especial (!@#$%&*)');
+        ax_erro = true;
+    }
+
+    if (!ax_erro) {
+        alert('Cadastro realizado com sucesso!');
+        document.getElementById('voltarLogin').click();
+    }
+}
 </script>
