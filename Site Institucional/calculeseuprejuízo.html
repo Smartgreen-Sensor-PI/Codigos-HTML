@@ -11,45 +11,58 @@
 
 <body class="tela corpo" style="background-color: #34492a;">
 
-
     <div class="card">
 
-        <h1><span class="main-color">Simulador Financeiro 🍅</SPan></h1>
-
-
+        <h1><span class="main-color">Simulador Financeiro 🍅</span></h1>
 
         <div>
             <h1 class="text title">
                 CALCULE: <span class="main-color">SEU PREJUÍZO</span>
             </h1>
-
         </div>
 
         <h3 class="text-color">
             Saiba os prejuízos que você terá por safra, caso não invista no nosso projeto:
         </h3>
 
-        <!--4 campos de inserir e um botão-->
-        <b>Quantos m² de solo fértil possui sua estufa?:</b> <br>
-        <input style="background-color: #a7c09b;" id="ipt_metro2" placeholder="Ex: 10"><br><br>
-        <b>Qual a média de produtividade por pé de tomate na sua estufa(em kg)?:</b> <br>
-        <input style="background-color: #a7c09b;" id="ipt_produtividade" placeholder="Ex: 2"><br><br>
-        <b>Tempereratura da Estufa(Em graus):</b> <br>
-        <input style="background-color: #a7c09b;" type="text" id="ipt_temp_atual" placeholder="Ex: 30"><br><br>
-        <b>Umidade da Estufa:(Em %):</b> <br>
-        <input style="background-color: #a7c09b;" type="text" id="ipt_umidade_atual" placeholder="Ex: 20"><br><br>
-        <b>Valor de venda do tomate (R$ por kg):</b> <br>
-        <input style="background-color: #a7c09b;" id="ipt_venda" placeholder="Ex: 6"><br><br>
+        <div class="input-group">
+            <b>Quantos m² de solo fértil possui sua estufa?</b>
+            <input type="number" id="ipt_metro2" placeholder="Ex: 10">
+        </div>
 
-        <p style="background-color: #a7c09b;">VOLTAR AO INICIO? <a href="index.html">Clique aqui</a></p>
+        <div class="input-group">
+            <b>Qual a média de produtividade por pé de tomate na sua estufa(kg)?</b>
+            <input type="number" id="ipt_produtividade" placeholder="Ex: 2">
+        </div>
 
-        <br><button onclick="tomate()">CALCULE SEU PREJUÍZO</button> <button onclick="limpar()">LIMPAR</button>
+        <div class="input-group">
+            <b>Temperatura da Estufa(Cº):</b>
+            <input type="number" id="ipt_temp_atual" placeholder="Ex: 30">
+        </div>
+
+        <div class="input-group">
+            <b>Umidade da Estufa(%):</b>
+            <input type="number" id="ipt_umidade_atual" placeholder="Ex: 20">
+        </div>
+
+        <div class="input-group">
+            <b>Valor de venda do tomate (R$/kg):</b>
+            <input type="number" id="ipt_venda" placeholder="Ex: 6">
+        </div>
+
+        <p>VOLTAR AO INICIO? <a href="index.html">Clique aqui</a></p>
+
+        <div class="botoes">
+            <button class="btn-calcular" onclick="tomate()">CALCULE SEU PREJUÍZO</button>
+            <button class="btn-limpar" onclick="limpar()">LIMPAR</button>
+        </div>
 
         <h4 class="text-color"> (Caso você queira ver seu prejuízo e seu lucro sendo acumulados por
             safra, clique novamente no botão.)</h4>
-        <br><br>
+
         <div id="div_msg"></div>
 
+        <p class="nota-ref">*Cálculos baseados em parâmetros de produtividade e estresse térmico da <b>Embrapa Hortaliças</b>.</p>
     </div>
 
 </body>
@@ -76,37 +89,65 @@
         let porcentagem_perda = 0;
         let porcentagem_umidade = 0;
 
+        let ax_erro = false;
 
-        if (temperatura > 38 || temperatura < 8) {
-            porcentagem_perda = 1; // perda de 100%
-        } else if (temperatura > 28 || temperatura < 15) {
-            porcentagem_perda = 0.30; // perda (entre 20% e 40%)
-        } else {
-            porcentagem_perda = 0; // sem perda
+        if (ipt_metro2.value.trim() == '' || ipt_venda.value.trim() == '' || ipt_produtividade.value.trim() == '' || ipt_temp_atual.value.trim() == '' || ipt_umidade_atual.value.trim() == '') {
+            alert(`Todos os campos são obrigatórios. Por favor, preencha-os`)
+            ax_erro = true;
         }
+        else {
 
-        if (umidade > 90) {
-            porcentagem_umidade = 1;
-        } else if (umidade >= 60 && umidade <= 70) {
-            porcentagem_umidade = 0;
-        } else {
-            porcentagem_umidade = 0.20;
+            if (metro <= 0) {
+                alert(`A área da estufa deve ser maior que 0`)
+                ax_erro = true;
+            }
+            else if (produtividade <= 0) {
+                alert(`A produtividade por pé de tomate deve ser maior que 0`)
+                ax_erro = true;
+            }
+            else if (venda <= 0) {
+                alert(`O valor de venda deve ser maior que 0`)
+                ax_erro = true;
+            }
+            else if (umidade < 0 || umidade > 100) {
+                alert(`O valor de umidade da estufa deve estar entre 0 e 100%`)
+                ax_erro = true;
+            }
         }
-
-        let prejuizo = total * (porcentagem_perda + porcentagem_umidade);
-        safra += 1;
-        acm_prejuizo += prejuizo;
-        acm_total += total;
+        if (ax_erro == false) {
 
 
-        div_msg.innerHTML += `<b <span class="text-color"</span> A cada ${safra} safra, com a estufa controlada (temperatura ideal) você lucraria R$${acm_total.toFixed(2)} no total. <br>
-        Com a temperatura atual de ${temperatura}°C, e a umidade atual de ${umidade}%, sua perda é de ${porcentagem_perda * 100}%. <br>
-        Sem o monitoramento, você sofre um prejuízo acumulado de R$${acm_prejuizo.toFixed(2)} na sua plantação. </b>
+            if (temperatura > 38 || temperatura < 8) {
+                porcentagem_perda = 1; // perda de 100%
+            } else if (temperatura > 28 || temperatura < 15) {
+                porcentagem_perda = 0.30; // perda (entre 20% e 40%)
+            } else {
+                porcentagem_perda = 0; // sem perda
+            }
+
+            if (umidade > 90) {
+                porcentagem_umidade = 1;
+            } else if (umidade >= 60 && umidade <= 70) {
+                porcentagem_umidade = 0;
+            } else {
+                porcentagem_umidade = 0.20;
+            }
+
+            let perda_total_pct = (porcentagem_perda + porcentagem_umidade) * 100;
+            let prejuizo = total * (porcentagem_perda + porcentagem_umidade);
+            safra += 1;
+            acm_prejuizo += prejuizo;
+            acm_total += total;
+
+
+            div_msg.innerHTML += `<b><span class="text-color"> A cada ${safra} safra (s), com a estufa controlada (temperatura ideal) você lucraria R$${acm_total.toFixed(2)} no total. <br>
+        Com a temperatura atual de ${temperatura}°C, e a umidade atual de ${umidade}%, sua perda é de ${perda_total_pct}%. <br>
+        Sem o monitoramento, você sofre um prejuízo acumulado de R$${acm_prejuizo.toFixed(2)} na sua plantação. </span></b>
         <br>
-        <span class="text-color"</span>---------------------------------------------------------------------------------------------
+        <span class="text-color">---------------------------------------------------------------------------------------------</span>
         <br>`;
+        }
     }
-
 
 
     function limpar() {

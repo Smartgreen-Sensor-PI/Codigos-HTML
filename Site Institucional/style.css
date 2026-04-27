@@ -20,8 +20,8 @@ body {
 
   background-image: 
     linear-gradient(
-      rgba(18, 146, 46, 0.7),
-      rgba(132, 11, 11, 0.9)
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.7)
     ),
     url("Imagens/Estufa\ de\ tomates\ à\ luz\ suave.png");
 
@@ -143,13 +143,13 @@ body {
   width: 500px;
   max-width: 90%;
   height: auto;
-  background-color: rgb(255, 255, 255);
-  border-radius: 25px;
-  border: solid 2px rgb(165, 73, 57);
+  background-color: white; 
+  border-radius: 15px;
   margin: 20px auto;
-  padding: 25px;
+  padding: 35px;
   padding-top: 40px;
 }
+
 
 .text {
   font-family: monospace;
@@ -240,7 +240,65 @@ html {
   scroll-behavior: smooth;
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; 
+}
 
+.input-group b {
+    color: #34492a;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+}
+
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.btn-calcular {
+    flex: 2; 
+    padding: 12px;
+    background-color: #008f39;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-limpar {
+    flex: 1;
+    padding: 12px;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.nota-referencia {
+    font-size: 11px;
+    color: #888;
+    margin-top: 20px;
+    text-align: center;
+    font-style: italic;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
 /* ===== DASHBOARD CSS ===== */
 
 

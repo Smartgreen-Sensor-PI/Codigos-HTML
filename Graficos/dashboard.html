@@ -13,33 +13,32 @@
 
 <body class="dashboard">
 
-
+    <a href="../Site Institucional/index.html" class="btnVoltar">Voltar</a>
 
     <h2 class="DASH">DashBoard-SmartGreen🌱</h2>
 
     <div class="cards">
         <div class="kpi">
-            <h1 class="title">
-                ALERTA DE TEMPERATURA!!
+            <h1 class="title" style="color: #34492a;">
+                Temperatura Atual
             </h1>
             <div class="divisao_kpi">
-                <p class="text">
-                </p>
-                Às 13h do dia 14/04 a temperatura registrada foi de 37°C, muito elevada! <br> <br>
-                </p>
+              <span class="numeroKPI">
+                    37 Cº      
+              </span>
             </div>
-
+            <p class="statusKPI">⚠️ Muito Elevada!</p>
         </div>
         <div class="kpi">
-            <h1 class="title">
-                ALERTA DE UMIDADE!!
+            <h1 class="title" style="color: #34492a;">
+                Umidade Atual
             </h1>
             <div class="divisao_kpi">
-                <p class="text">
-                    Às 13h do dia 14/04 a umidade registrada foi de 45%, muito baixa! <br> <br>
-                </p>
+                <span class="numeroKPI">
+                    30%
+                </span>
             </div>
-
+            <p class="statusKPI">⚠️ Muito Baixa</p>
         </div>
         <div class="kpi">
             <h1 class="title" style="color: black;">
@@ -47,7 +46,7 @@
             </h1>
             <div class="divisao_kpi">
                 <p class="text">
-                    Temperatura: 30°C
+                    Temperatura: 28°C
                 </p>
             </div>
             <div class="divisao_kpi">
@@ -131,7 +130,7 @@
                 y: {
                     title: {
                         display: true,
-                        text: 'Temperatura (°C) / Umidade (%)',
+                        text: 'Temperatura (Cº) / Umidade (%)',
                         color: 'black',
                         font: {
                             size: 14,
@@ -193,7 +192,7 @@
                 x: {
                     title: {
                         display: true,
-                        text: 'Média de temp e umi do dia hoje',
+                        text: 'Média do Dia',
                         color: 'black',
                         font: {
                             size: 14,
@@ -208,7 +207,7 @@
                 y: {
                     title: {
                         display: true,
-                        text: 'Valores',
+                        text: 'Valores (Cº / %)',
                         color: 'black',
                         font: {
                             size: 14,
