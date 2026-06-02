@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./../css/style.css">
     <title>Calculadora - SmartGreen🍀</title>
-    <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./../Imagens/aba.png">
 </head>
 
 <body class="tela corpo" style="background-color: #34492a;">
@@ -50,11 +50,11 @@
             <input type="number" id="ipt_venda" placeholder="Ex: 6">
         </div>
 
-        <p>VOLTAR AO INICIO? <a href="index.html">Clique aqui</a></p>
+        <p>VOLTAR AO INICIO? <a href="./../index.html">Clique aqui</a></p>
 
         <div class="botoes">
             <button class="btn-calcular" onclick="tomate()">CALCULE SEU PREJUÍZO</button>
-            <button class="btn-limpar" onclick="limpar()">LIMPAR</button>
+            <button class="btn-limpar" onclick="limpar_tudo()">LIMPAR</button>
         </div>
 
         <h4 class="text-color"> (Caso você queira ver seu prejuízo e seu lucro sendo acumulados por
@@ -150,7 +150,7 @@
     }
 
 
-    function limpar() {
+    function limpar_tudo() {
         // Limpar os inputs
         ipt_venda.value = "";
         ipt_metro2.value = "";

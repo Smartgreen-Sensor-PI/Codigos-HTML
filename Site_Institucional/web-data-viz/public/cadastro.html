@@ -4,37 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./../css/style.css">
     <title>Cadastro - SmartGreen🍀</title>
-    <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./../Imagens/aba.png">
 </head>
 
-<body class="home">
+<body class="home" onload="listar()">
 
     <header>
         <nav>
             <div class="menu-esquerda">
-                <a href="index.html">🍀</a>
-                <a href="index.html#sobre">Sobre nós</a>
-                <a href="index.html#produtos">Produtos</a>
-                <a href="index.html#missao">Nossa missão</a>
-                <a href="calculeseuprejuízo.html">Calcule seu prejuízo</a>
+                <a href="./../index.html">🍀</a>
+                <a href="./../index.html#sobre">Sobre nós</a>
+                <a href="./../index.html#produtos">Produtos</a>
+                <a href="./../index.html#missao">Nossa missão</a>
+                <a href="./../calculeseuprejuízo.html">Calcule seu prejuízo</a>
             </div>
             <div class="menu-direita">
-                <a href="login.html">👤</a>
+                <a href="./../login.html">👤</a>
             </div>
         </nav>
     </header>
-
+ 
     <div class="tela">
     <div class="caixa-cadastro">
       <h1 style="font-size: 28px; color: #34492a;">SmartGreen 🍀</h1>
 
-      <h2><i>Complete seu cadastro</i></h2>
+      <h2><i>Olá! Realize seu cadastro</i></h2>
 
       <div class="input-group">
-        <b>Digite seu usuário:</b>
-        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+        <b>Digite seu nome:</b>
+        <input class="inputs" type="text" id="ipt_nome" placeholder="Seu usuário">
         <span id="validacao_usuario" class="msg_validacao"></span>
       </div>
 
@@ -57,7 +57,7 @@
       </div>
 
       <p style="font-size: 14px; margin-top: 10px;">
-        Já possui uma conta? <a href="login.html" style="color: #34492a; font-weight: bold;">Faça login</a>
+        Já possui uma conta? <a href="./../login.html" style="color: #34492a; font-weight: bold;">Faça nome</a>
       </p>
 
       <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
@@ -71,7 +71,7 @@
 
     <script>
         function cadastrar() {
-            let login = document.getElementById('ipt_login').value
+            let nome = document.getElementById('ipt_nome').value
             let email = document.getElementById('ipt_email').value
             let senha = document.getElementById('ipt_senha').value
             let senhaConfirmada = document.getElementById('ipt_senhaConf').value
@@ -81,7 +81,7 @@
             validacao_senha.style.display = 'none'
             validacao_confSenha.style.display = 'none'
 
-            if (login == '') {
+            if (nome == '') {
                 validacao_usuario.innerHTML = `O campo de usuário deve ser preenchido`
                 validacao_usuario.style.display = 'block'
             }
@@ -129,9 +129,50 @@
                 return
             }
 
-            alert('Cadastro realizado com sucesso!')
-            window.location.href = 'login.html'
+            fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nome,
+        emailServer: email,
+        senhaServer: senha,
+        senhaConfirmadaServer: senhaConfirmada
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+           validacao_usuario.style.display = 'block'
+            validacao_email.style.display = 'block'
+            validacao_senha.style.display = 'block'
+            validacao_confSenha.style.display = 'block'
+
+          validacao_confSenha.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de nome...";
+
+          setTimeout(() => {
+            window.location = "./../login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
         }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
     </script>
 
 </body>
