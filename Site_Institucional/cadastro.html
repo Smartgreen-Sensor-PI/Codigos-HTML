@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cadastro - SmartGreen🍀</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
+</head>
+
+<body class="home">
+
+    <header>
+        <nav>
+            <div class="menu-esquerda">
+                <a href="index.html">🍀</a>
+                <a href="index.html#sobre">Sobre nós</a>
+                <a href="index.html#produtos">Produtos</a>
+                <a href="index.html#missao">Nossa missão</a>
+                <a href="calculeseuprejuízo.html">Calcule seu prejuízo</a>
+            </div>
+            <div class="menu-direita">
+                <a href="login.html">👤</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="tela">
+    <div class="caixa-cadastro">
+      <h1 style="font-size: 28px; color: #34492a;">SmartGreen 🍀</h1>
+
+      <h2><i>Complete seu cadastro</i></h2>
+
+      <div class="input-group">
+        <b>Digite seu usuário:</b>
+        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+      </div>
+
+      <div class="input-group">
+        <b>Digite seu e-mail:</b>
+        <input class="inputs" type="email" id="ipt_email" placeholder="Seu e-mail">
+      </div>
+
+      <div class="input-group">
+        <b>Digite sua senha:</b>
+        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+      </div>
+
+      <div class="input-group">
+        <b>Confirme a sua senha:</b>
+        <input class="inputs" type="password" id="ipt_senhaConf" placeholder="Confirme a senha">
+      </div>
+
+      <p style="font-size: 14px; margin-top: 10px;">
+        Já possui uma conta? <a href="login.html" style="color: #34492a; font-weight: bold;">Faça login</a>
+      </p>
+
+      <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
+    </div>
+  </div>
+
+    <footer class="rodape">
+        <p>© 2026 SmartGreen🍀 - Todos os direitos reservados</p>
+        <p>Contato: smartgreen@email.com</p>
+    </footer>
+
+    <script>
+        function cadastrar() {
+            let login = document.getElementById('ipt_login').value
+            let email = document.getElementById('ipt_email').value
+            let senha = document.getElementById('ipt_senha').value
+            let senhaConfirmada = document.getElementById('ipt_senhaConf').value
+
+            if (login == '') {
+                alert('O campo de usuário deve ser preenchido')
+                return
+            }
+            if (email == '') {
+                alert('O campo de Email deve ser preenchido')
+                return
+            }
+            if (email.indexOf('@') < 0) {
+                alert('Insira um email válido')
+                return
+            }
+            if (senha == '') {
+                alert('O campo de senha deve ser preenchido')
+                return
+            }
+            if (senhaConfirmada != senha) {
+                alert('As senhas não coincidem')
+                return
+            }
+            if (senha.length < 8) {
+                alert('Senha muito curta! Mínimo de 8 caracteres')
+                return
+            }
+
+            let qtdNumero = 0
+            let caracterEspecial = '!@#$%&*'
+            let possuiCaracEspecial = false
+
+            for (let i = 0; i < senha.length; i++) {
+                if (senha[i] >= '0' && senha[i] <= '9') {
+                    qtdNumero++
+                } else if (caracterEspecial.indexOf(senha[i]) >= 0) {
+                    possuiCaracEspecial = true
+                }
+            }
+
+            if (qtdNumero < 2) {
+                alert('Senha fraca! Insira ao menos 2 números')
+                return
+            }
+            if (!possuiCaracEspecial) {
+                alert('Senha fraca! Insira ao menos 1 caractere especial (!@#$%&*)')
+                return
+            }
+
+            alert('Cadastro realizado com sucesso!')
+            window.location.href = 'login.html'
+        }
+    </script>
+
+</body>
+
+</html>

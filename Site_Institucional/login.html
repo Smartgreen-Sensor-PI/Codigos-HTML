@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Login - SmartGreen🍀</title>
+  <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
+</head>
+
+<body class="home">
+
+  <header>
+    <nav>
+      <div class="menu-esquerda">
+        <a href="index.html">🍀</a>
+        <a href="index.html#sobre">Sobre nós</a>
+        <a href="index.html#produtos">Produtos</a>
+        <a href="index.html#missao">Nossa missão</a>
+        <a href="calculeseuprejuízo.html">Calcule seu prejuízo</a>
+      </div>
+      <div class="menu-direita">
+        <a href="login.html">👤</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="tela">
+    <div class="caixa-login">
+      <h1 style="font-size: 28px; color: #34492a;">Seja bem-vindo a <br>SmartGreen🍀</h1>
+
+      <div class="input-group">
+        <b>Digite seu usuário:</b>
+        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+      </div>
+
+      <div class="input-group">
+        <b>Digite sua senha:</b>
+        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+      </div>
+
+      <p style="font-size: 14px;">
+        Não possui cadastro? <a href="cadastro.html" style="color: #34492a; font-weight: bold;">Clique aqui</a>
+      </p>
+
+      <button class="btn-verde" onclick="entrar()">Entrar</button>
+    </div>
+  </div>
+
+  <footer class="rodape">
+    <p>© 2026 SmartGreen🍀 - Todos os direitos reservados</p>
+    <p>Contato: smartgreen@email.com</p>
+  </footer>
+
+  <script>
+    function entrar() {
+      let login = document.getElementById('ipt_login').value
+      let senha = document.getElementById('ipt_senha').value
+
+      if (login == '') {
+        alert('Por favor insira seu usuário')
+        return
+      }
+      if (senha == '') {
+        alert('Por favor insira sua senha')
+        return
+      }
+
+      if (login == "Fernanda" && senha == "12345678") {
+        alert('Seja bem-vindo!')
+        window.location.href = "../Graficos/suporte.html"
+      } else if (login != "Fernanda" && senha != "12345678") {
+        window.location.href = "../Graficos/dashboard.html"
+      } else {
+        alert('Usuário ou senha incorretos')
+
+      }
+    }
+  </script>
+
+</body>
+
+</html>
