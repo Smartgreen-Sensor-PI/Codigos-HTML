@@ -33,11 +33,13 @@
       <div class="input-group">
         <b>Digite seu usuário:</b>
         <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+        <span id="validacao_usuario" class="msg_validacao"></span>
       </div>
 
       <div class="input-group">
         <b>Digite sua senha:</b>
         <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+        <span id="validacao_senha" class="msg_validacao"></span>
       </div>
 
       <p style="font-size: 14px;">
@@ -58,12 +60,16 @@
       let login = document.getElementById('ipt_login').value
       let senha = document.getElementById('ipt_senha').value
 
+      validacao_usuario.style.display = 'none'
+      validacao_senha.style.display = 'none'
+
       if (login == '') {
-        alert('Por favor insira seu usuário')
-        return
+        validacao_usuario.innerHTML = `Por favor, insira seu usuário`
+        validacao_usuario.style.display = `block`
       }
       if (senha == '') {
-        alert('Por favor insira sua senha')
+        validacao_senha.innerHTML = `Por favor insira sua senha`
+        validacao_senha.style.display = `block`
         return
       }
 

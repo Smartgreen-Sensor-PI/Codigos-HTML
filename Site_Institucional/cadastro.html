@@ -35,21 +35,25 @@
       <div class="input-group">
         <b>Digite seu usuário:</b>
         <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+        <span id="validacao_usuario" class="msg_validacao"></span>
       </div>
 
       <div class="input-group">
         <b>Digite seu e-mail:</b>
         <input class="inputs" type="email" id="ipt_email" placeholder="Seu e-mail">
+        <span id="validacao_email" class="msg_validacao"></span>
       </div>
 
       <div class="input-group">
         <b>Digite sua senha:</b>
         <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+        <span id="validacao_senha" class="msg_validacao"></span>
       </div>
 
       <div class="input-group">
         <b>Confirme a sua senha:</b>
         <input class="inputs" type="password" id="ipt_senhaConf" placeholder="Confirme a senha">
+        <span id="validacao_confSenha" class="msg_validacao"></span>
       </div>
 
       <p style="font-size: 14px; margin-top: 10px;">
@@ -72,28 +76,34 @@
             let senha = document.getElementById('ipt_senha').value
             let senhaConfirmada = document.getElementById('ipt_senhaConf').value
 
+            validacao_usuario.style.display = 'none'
+            validacao_email.style.display = 'none'
+            validacao_senha.style.display = 'none'
+            validacao_confSenha.style.display = 'none'
+
             if (login == '') {
-                alert('O campo de usuário deve ser preenchido')
-                return
+                validacao_usuario.innerHTML = `O campo de usuário deve ser preenchido`
+                validacao_usuario.style.display = 'block'
             }
             if (email == '') {
-                alert('O campo de Email deve ser preenchido')
-                return
+                validacao_email.innerHTML = `O campo de Email deve ser preenchido`
+                validacao_email.style.display = 'block'
             }
             if (email.indexOf('@') < 0) {
-                alert('Insira um email válido')
-                return
+                validacao_email.innerHTML = `Insira um email válido`
+                validacao_email.style.display = 'block'
             }
             if (senha == '') {
-                alert('O campo de senha deve ser preenchido')
-                return
+                validacao_senha.innerHTML = `O campo de senha deve ser preenchido`
+                validacao_senha.style.display = 'block'
             }
             if (senhaConfirmada != senha) {
-                alert('As senhas não coincidem')
-                return
+                validacao_confSenha.innerHTML = `As senhas não coincidem`
+                validacao_confSenha.style.display = 'block'
             }
             if (senha.length < 8) {
-                alert('Senha muito curta! Mínimo de 8 caracteres')
+                validacao_confSenha.innerHTML = `Senha muito curta! Mínimo de 8 caracteres`
+                validacao_confSenha.style.display = 'block'
                 return
             }
 
@@ -110,11 +120,12 @@
             }
 
             if (qtdNumero < 2) {
-                alert('Senha fraca! Insira ao menos 2 números')
-                return
+                validacao_senha.innerHTML = `Senha fraca! Insira ao menos 2 números`
+                validacao_senha.style.display = 'block'
             }
             if (!possuiCaracEspecial) {
-                alert('Senha fraca! Insira ao menos 1 caractere especial (!@#$%&*)')
+                validacao_senha.innerHTML = `Senha fraca! Insira ao menos 1 caractere especial (!@#$%&*)`
+                validacao_senha.style.display = 'block'
                 return
             }
 
