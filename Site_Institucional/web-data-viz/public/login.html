@@ -33,8 +33,8 @@
 
       <div class="input-group">
         <b>Digite seu usuário:</b>
-        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
-        <span id="validacao_usuario" class="msg_validacao"></span>
+        <input class="inputs" type="text" id="ipt_email" placeholder="Seu email de usuário">
+        <span id="validacao_email" class="msg_validacao"></span>
       </div>
 
       <div class="input-group">
@@ -59,10 +59,10 @@
 
   <script>
     function entrar() {
-      aguardar()
+      
 
-      let email = document.getElementById('ipt_email').value
-      let senha = document.getElementById('ipt_senha').value
+      var email = document.getElementById('ipt_email').value
+      var senha = document.getElementById('ipt_senha').value
 
       validacao_email.style.display = 'none'
       validacao_senha.style.display = 'none'
@@ -70,19 +70,19 @@
       if (email == '') {
         validacao_email.innerHTML = `Por favor, insira seu email`
         validacao_email.style.display = `block`
+        return
       }
       if (senha == '') {
         validacao_senha.innerHTML = `Por favor insira sua senha`
         validacao_senha.style.display = `block`
-        finalizarAguardar();
         return
       }
 
       if (email == "fernanda@fernada.com" && senha == "12345678") {
         alert('Seja bem-vindo!')
-        window.location.href = "../Graficos/suporte.html"
+        window.location.href = "./../suporte.html"
       } else if (email != "fernanda@fernada.com" && senha != "12345678") {
-        window.location.href = "../Graficos/dashboard.html"
+        window.location.href = "./../dashboard/dashboard(smart).html"
       } else {
         alert('Usuário ou senha incorretos')
 
@@ -114,7 +114,7 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./../dashboard/dashboard(smart).html";
                     }, 1000); // apenas para exibir o loading
 
                 });

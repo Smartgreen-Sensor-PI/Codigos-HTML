@@ -1,62 +1,105 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+-- SENSOR SMARTGREEN
 
-/*
-comandos para mysql server
-*/
+CREATE DATABASE smartgreen;
+USE smartgreen;
 
-CREATE DATABASE aquatech;
-
-USE aquatech;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14),
-	codigo_ativacao VARCHAR(50)
+CREATE TABLE Empresa( 
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+CNPJ CHAR(14) UNIQUE NOT NULL,
+nomeFantasia VARCHAR(45)
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE usuario(
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(40) NOT NULL,
+email VARCHAR(40) UNIQUE NOT NULL,
+senha VARCHAR(40) NOT NULL,
+fkEmpresa INT NOT NULL,
+	CONSTRAINT fkUsuarioEmpresa
+		FOREIGN KEY (fkEmpresa) 
+			REFERENCES empresa (idEmpresa)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+
+CREATE TABLE endereco(
+idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+cep CHAR(8) NOT NULL,
+complemento VARCHAR(20),
+numero INT,
+UF CHAR(2)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+CREATE TABLE estufa(
+idEstufa INT PRIMARY KEY auto_increment,
+comprimento DECIMAL(5,2),
+largura DECIMAL(5,2),
+altura DECIMAL(5,2),
+fkEmpresa INT NOT NULL,
+fkEndereco INT NOT NULL,
+FOREIGN KEY(fkEmpresa) REFERENCES Empresa(idEmpresa),
+FOREIGN KEY (fkEndereco) REFERENCES endereco(idEndereco)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+
+CREATE TABLE sensor(
+idSensor INT PRIMARY KEY auto_increment,
+estado VARCHAR(20) NOT NULL, 
+CONSTRAINT chk_estado_fisico_sensor 
+	CHECK (estado IN('reparo necessario', 'inativo', 'em funcionamento')),
+localizacao VARCHAR(45) NOT NULL,
+dtInstalacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+fkEstufa INT NOT NULL,
+	CONSTRAINT fkSensorEstufa
+		FOREIGN KEY (fkEstufa)
+			REFERENCES estufa (idEstufa)
 );
 
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
-insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
+
+
+CREATE TABLE registro_sensor(
+idRegistro INT auto_increment,
+temperatura DECIMAL(3,1) NOT NULL,
+umidade DECIMAL(3,1) NOT NULL,
+momento_registro DATETIME DEFAULT current_timestamp,
+fkSensor INT NOT NULL, 
+PRIMARY KEY (idRegistro,fkSensor),
+CONSTRAINT fkRegistro_sensor
+	FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor) 	
+);
+		
+    
+
+INSERT INTO Empresa (CNPJ, nomeFantasia) 
+VALUES ('12345678901234', 'Fazenda Top');
+
+INSERT INTO usuario (nome, email, senha, fkEmpresa) 
+VALUES ('Kauã', 'kaua.aaa@fazenda.com', 'senhaTop123', 1);
+
+INSERT INTO endereco (cep, complemento, numero, UF)
+VALUES ('10000000', 'Galpão Principal', 101, 'SP');
+
+INSERT INTO estufa (comprimento, largura, altura, fkEmpresa, fkEndereco)
+VALUES (50.0, 10.0, 3.5, 1, 1);
+
+INSERT INTO sensor (estado, localizacao, fkEstufa) 
+VALUES ('em funcionamento', 'Setor Norte', 1);
+
+INSERT INTO registro_sensor (umidade, temperatura, fkSensor) VALUES (60.0, 25.5, 1);
+INSERT INTO registro_sensor (umidade, temperatura, fkSensor) VALUES (50.0, 26.2, 1);
+INSERT INTO registro_sensor (umidade, temperatura, fkSensor) VALUES (99.0, 27.0, 1);
+
+
+SELECT 
+    u.nome AS 'Produtor',
+    emp.nomeFantasia AS 'Empresa',
+    est.idEstufa AS 'Numero da Estufa',
+    sen.localizacao AS 'Local do Sensor',
+    reg.temperatura AS 'Temperatura Registrada (°C)',
+    reg.umidade AS 'Umidade Registrada (%)',
+    reg.momento_registro AS 'Data e Hora'
+FROM usuario u
+JOIN Empresa emp ON u.fkEmpresa = emp.idEmpresa
+JOIN estufa est ON est.fkEmpresa = emp.idEmpresa
+JOIN sensor sen ON sen.fkEstufa = est.idEstufa
+JOIN registro_sensor reg ON reg.fkSensor = sen.idSensor;
