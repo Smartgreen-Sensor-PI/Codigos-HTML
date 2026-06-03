@@ -1,0 +1,252 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E PALETA DE CORES (VIBES FAZENDA / ESTUFA DE TOMATE)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Exo 2', sans-serif;
+}
+
+:root {
+    --bg-fazenda: #f4f7f4;         /* Verde esbranquiçado de fundo (ar limpo) */
+    --verde-estufa: #e2ede2;       /* Verde claro para os painéis principais */
+    --verde-folha: #6bb07f;        /* Verde escuro para textos e destaques */
+    --verde-bbroto: #88c096;       /* Verde intermediário para botões e detalhes */
+    --marrom-terra: #5c4033;       /* Marrom suave para o menu lateral */
+    --palha: #fcf9f2;              /* Cor palha/creme para os cards internos */
+    
+    /* Cores Alerta Adaptadas à Estufa */
+    --tomate-maduro: #d9534f;      /* Perigo Quente / Tomate maduro demais */
+    --caqui-alerta: #f0ad4e;       /* Alerta Quente */
+    --ideal-verde: #5cb85c;        /* Ideal */
+    --orvalho-alerta: #5bc0de;     /* Alerta Frio */
+    --geada-perigo: #6f859c;       /* Perigo Frio */
+}
+
+body {
+    background-color: var(--bg-fazenda);
+    color: var(--marrom-terra);
+}
+
+/* Estrutura Principal Flex */
+.janela {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   HEADER LATERAL (MENU ESQUERDO) - ESTILO MADEIRA/TERRA SUAVE
+   ========================================================================== */
+.header-left {
+    width: 25%;
+    background-color: var(--marrom-terra);
+    color: var(--palha);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-left h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffd8a8; /* Tom sutil de flor de tomate */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.header-left .hello {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #e2ede2;
+}
+
+.header-left .hello span {
+    color: #ffd8a8;
+    font-weight: bold;
+}
+
+/* Botões do Menu Lateral */
+.btn-nav, .btn-nav-white {
+    width: 85%;
+    margin: 10px 0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-nav-white a {
+    text-decoration: none;
+    color: var(--palha);
+}
+
+.btn-nav h3, .btn-nav-white h3 {
+    font-size: 16px;
+    padding: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Estado Ativo (Página Atual) */
+.btn-nav {
+    background-color: var(--verde-folha);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+.btn-nav h3 {
+    color: white;
+    font-weight: 600;
+}
+
+/* Estado Inativo/Geral */
+.btn-nav-white {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn-nav-white:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(5px);
+}
+
+/* Botão Sair */
+.btn-logout {
+    margin-top: auto;
+    width: 85%;
+    background-color: #be4b49;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-logout h3 {
+    padding: 12px;
+    font-size: 15px;
+}
+
+.btn-logout:hover {
+    background-color: #a33c3a;
+}
+
+
+/* ==========================================================================
+   UTILITÁRIOS
+   ========================================================================== */
+.display-none {
+    display: none !important;
+}
+
+.display-block {
+    display: block !important;
+}
+
+/* ==========================================================================
+   TELA DA BOBIA - SUPORTE INTELIGENTE (VIBES FAZENDA)
+   ========================================================================== */
+
+/* Container Principal da IA */
+#container {
+    background-color: white;
+    border-radius: 18px;
+    border: 1px solid var(--verde-estufa);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.03);
+    padding: 30px;
+    max-width: 700px;
+    margin: 20px auto; /* Centraliza na tela */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título BobIA */
+#container h1 {
+    font-size: 26px;
+    color: var(--verde-folha);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+/* Campo de Texto (Textarea) - Estilo Bloco de Notas Ecológico */
+#pergunta {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    border: 2px solid var(--verde-estufa);
+    border-radius: 12px;
+    background-color: var(--palha); /* Fundo creme suave */
+    color: var(--marrom-terra);
+    font-size: 15px;
+    resize: none; /* Impede o usuário de quebrar o layout puxando a janela */
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efeito de Clique no Campo de Texto */
+#pergunta:focus {
+    border-color: var(--verde-bbroto);
+    box-shadow: 0 0 8px rgba(136, 192, 150, 0.4);
+    background-color: white;
+}
+
+/* Botão Gerar Resposta */
+#container button {
+    background-color: var(--verde-folha);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start; /* Alinha o botão à esquerda */
+    box-shadow: 0 4px 8px rgba(46, 111, 64, 0.2);
+}
+
+#container button:hover {
+    background-color: #235431; /* Verde um pouco mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(46, 111, 64, 0.3);
+}
+
+#container button:active {
+    transform: translateY(0);
+}
+
+/* Título da Resposta */
+#container h3 {
+    font-size: 16px;
+    color: var(--marrom-terra);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* Caixa de Resposta da IA */
+#resposta {
+    background-color: var(--bg-fazenda); /* Verde bem clarinho de fundo */
+    border-left: 4px solid var(--verde-bbroto); /* Barrinha verde de destaque na esquerda */
+    padding: 15px 20px;
+    border-radius: 0 12px 12px 0;
+    color: var(--marrom-terra);
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 50px; /* Garante que a caixa exista mesmo vazia */
+    transition: all 0.3s ease;
+}
+
+/* Se a resposta estiver vazia, ela fica semi-transparente ou discreta */
+#resposta:empty::before {
+    content: "Aguardando sua pergunta para ajudar na estufa...";
+    color: #99aab0;
+    font-style: italic;
+}
+
