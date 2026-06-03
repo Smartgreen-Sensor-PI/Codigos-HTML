@@ -78,15 +78,10 @@
         return
       }
 
-      if (email == "fernanda@fernada.com" && senha == "12345678") {
+      /*if (email == "fernanda@fernada.com" && senha == "12345678") {
         alert('Seja bem-vindo!')
         window.location.href = "./../suporte.html"
-      } else if (email != "fernanda@fernada.com" && senha != "12345678") {
-        window.location.href = "./../dashboard/dashboard(smart).html"
-      } else {
-        alert('Usuário ou senha incorretos')
-
-      }
+      } */
 
       console.log("FORM LOGIN: ", email);
         console.log("FORM SENHA: ", senha);
@@ -111,10 +106,11 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    
 
                     setTimeout(function () {
-                        window.location = "./../dashboard/cards(smartS3)";
+                        window.location = "./dashboard/cards(smartS3).html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -125,7 +121,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 
