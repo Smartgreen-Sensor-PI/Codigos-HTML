@@ -2,15 +2,14 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>SmartGreen | Tempo Real</title>
 
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="../css/styleDashS3.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -26,25 +25,25 @@
 
         <div class="header-left dash-header">
 
-            <h1>AquaTech</h1>
+            <h1>SmartGreen</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav">
-                <h3>Aquários</h3>
+                <h3>Estufas</h3>
             </div>
 
             <div class="btn-nav-white">
-                <a href="./dashboard.html">
+                <a href="dash(smartS3).html">
                     <h3>Gráficos</h3>
                 </a>
             </div>
 
             <div class="btn-nav-white">
                 <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                    <h3>Manual do Cliente</h3>
                 </a>
             </div>
 
@@ -59,7 +58,7 @@
             </div>
             <div class="area-parametros-alerta">
                 <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
+                    Legenda - Parâmetros para Alertas de <span style="color: #c58a1e">Temperatura</span>
                 </p>
                 <div class="parametros-alerta">
                     <div class="item-regua perigo-frio">
@@ -68,19 +67,47 @@
                     </div>
                     <div class="item-regua alerta-frio">
                         <p>Alerta</p>
-                        <p>&lt;=10°C</p>
+                        <p>&lt;=15°C</p>
                     </div>
                     <div class="item-regua ideal">
                         <p>Ideal</p>
-                        <p>20°C</p>
+                        <p>22°C</p>
                     </div>
                     <div class="item-regua alerta-quente">
                         <p>Alerta</p>
-                        <p>&gt;=22°C</p>
+                        <p>&gt;=28°C</p>
                     </div>
                     <div class="item-regua perigo-quente">
                         <p>Perigo</p>
-                        <p>&gt;=23°C</p>
+                        <p>&gt;=35°C</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="area-parametros-alerta">
+                <p class="titulo-legenda">
+                    Legenda - Parâmetros para Alertas de <span style="color: #6493a5">Umidade</span>
+                </p>
+                <div class="parametros-alerta">
+                    <div class="item-regua perigo-frio">
+                        <p>Perigo</p>
+                        <p>&lt;=40%</p>
+                    </div>
+                    <div class="item-regua alerta-frio">
+                        <p>Alerta</p>
+                        <p>&lt;=50%</p>
+                    </div>
+                    <div class="item-regua ideal">
+                        <p>Ideal</p>
+                        <p>60%</p>
+                    </div>
+                    <div class="item-regua alerta-quente">
+                        <p>Alerta</p>
+                        <p>&gt;=70%</p>
+                    </div>
+                    <div class="item-regua perigo-quente">
+                        <p>Perigo</p>
+                        <p>&gt;=85%</p>
                     </div>
                 </div>
             </div>
