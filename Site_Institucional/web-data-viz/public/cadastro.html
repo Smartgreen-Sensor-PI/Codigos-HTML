@@ -4,180 +4,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./../css/style.css">
+    <link rel="stylesheet" href="css/logcad.css">
     <title>Cadastro - SmartGreen🍀</title>
     <link rel="shortcut icon" type="image/x-icon" href="./../Imagens/aba.png">
 </head>
 
 <body class="home">
-
-    <header>
-        <nav>
-            <div class="menu-esquerda">
-                <a href="./../index.html">🍀</a>
-                <a href="./../index.html#sobre">Sobre nós</a>
-                <a href="./../index.html#produtos">Produtos</a>
-                <a href="./../index.html#missao">Nossa missão</a>
-                <a href="./../calculeseuprejuízo.html">Calcule seu prejuízo</a>
-            </div>
-            <div class="menu-direita">
-                <a href="./../login.html">👤</a>
-            </div>
+    <header class="navbar">
+        <div class="logo"> <a href="index.html"><img
+                    src="Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview-removebg-preview (1).png"
+                    alt="" class="img-logo"> <a href="" class="logo-frase">SmartGreen Sensor</a></a></div>
+        <nav class="menu">
+            <a href="index.html#home">início</a>
+            <a href="index.html#sobre">Sobre nós</a>
+            <a href="index.html#produtos">Produtos</a>
+            <a href="index.html#missao">Nossa missão</a>
+            <a href="calculeseuprejuízo.html">Calcule seu prejuízo</a>
         </nav>
+        <div id="navBotoes">
+            <a class="perfil" href="login.html">👤</a>
+            <a href="login.html" class="btn-login" id="btnEntrar">Login</a>
+        </div>
     </header>
- 
+
     <div class="tela">
-    <div class="caixa-cadastro">
-      <h1 style="font-size: 28px; color: #34492a;">SmartGreen 🍀</h1>
+        <div class="caixa-cadastro">
+            <h1 style="font-size: 28px; color: #34492a;">SmartGreen 🍀</h1>
+            <h2><i>Olá! Realize seu cadastro</i></h2>
 
-      <h2><i>Olá! Realize seu cadastro</i></h2>
+            <div class="input-group">
+                <b>Digite seu nome:</b>
+                <input class="inputs" type="text" id="ipt_nome" placeholder="Seu usuário">
+                <span id="validacao_usuario" class="msg_validacao"></span>
+            </div>
+            <div class="input-group">
+                <b>Digite seu e-mail:</b>
+                <input class="inputs" type="email" id="ipt_email" placeholder="Seu e-mail">
+                <span id="validacao_email" class="msg_validacao"></span>
+            </div>
 
-      <div class="input-group">
-        <b>Digite seu nome:</b>
-        <input class="inputs" type="text" id="ipt_nome" placeholder="Seu usuário">
-        <span id="validacao_usuario" class="msg_validacao"></span>
-      </div>
+            <div class="input-group">
+                <b>Digite sua senha:</b>
+                <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+                <span id="validacao_senha" class="msg_validacao"></span>
+            </div>
 
-      <div class="input-group">
-        <b>Digite seu e-mail:</b>
-        <input class="inputs" type="email" id="ipt_email" placeholder="Seu e-mail">
-        <span id="validacao_email" class="msg_validacao"></span>
-      </div>
-
-      <div class="input-group">
-        <b>Digite sua senha:</b>
-        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
-        <span id="validacao_senha" class="msg_validacao"></span>
-      </div>
-
-      <div class="input-group">
-        <b>Confirme a sua senha:</b>
-        <input class="inputs" type="password" id="ipt_senhaConf" placeholder="Confirme a senha">
-        <span id="validacao_confSenha" class="msg_validacao"></span>
-      </div>
-
-      <p style="font-size: 14px; margin-top: 10px;">
-        Já possui uma conta? <a href="./../login.html" style="color: #34492a; font-weight: bold;">Faça nome</a>
-      </p>
-
-      <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
+            <div class="input-group">
+                <b>Confirme a sua senha:</b>
+                <input class="inputs" type="password" id="ipt_senhaConf" placeholder="Confirme a senha">
+                <span id="validacao_confSenha" class="msg_validacao"></span>
+            </div>
+            <p style="font-size: 14px; margin-top: 10px;">
+                Já possui uma conta? <a href="./../login.html" style="color: #34492a; font-weight: bold;">Faça nome</a>
+            </p>
+            <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
+        </div>
     </div>
-  </div>
-
-    <footer class="rodape">
-        <p>© 2026 SmartGreen🍀 - Todos os direitos reservados</p>
-        <p>Contato: smartgreen@email.com</p>
-    </footer>
-
-    <script>
-        function cadastrar() {
-            var nome = document.getElementById('ipt_nome').value
-            var email = document.getElementById('ipt_email').value
-            var senha = document.getElementById('ipt_senha').value
-            var senhaConfirmada = document.getElementById('ipt_senhaConf').value
-
-            validacao_usuario.style.display = 'none'
-            validacao_email.style.display = 'none'
-            validacao_senha.style.display = 'none'
-            validacao_confSenha.style.display = 'none'
-
-            if (nome == '') {
-                validacao_usuario.innerHTML = `O campo de usuário deve ser preenchido`
-                validacao_usuario.style.display = 'block'
-                return
-            }
-            if (email == '') {
-                validacao_email.innerHTML = `O campo de Email deve ser preenchido`
-                validacao_email.style.display = 'block'
-                return
-            }
-            if (email.indexOf('@') < 0) {
-                validacao_email.innerHTML = `Insira um email válido`
-                validacao_email.style.display = 'block'
-                return
-            }
-            if (senha == '') {
-                validacao_senha.innerHTML = `O campo de senha deve ser preenchido`
-                validacao_senha.style.display = 'block'
-                return
-            }
-            if (senhaConfirmada != senha) {
-                validacao_confSenha.innerHTML = `As senhas não coincidem`
-                validacao_confSenha.style.display = 'block'
-                return
-            }
-            if (senha.length < 8) {
-                validacao_confSenha.innerHTML = `Senha muito curta! Mínimo de 8 caracteres`
-                validacao_confSenha.style.display = 'block'
-                return
-            }
-
-            let qtdNumero = 0
-            let caracterEspecial = '!@#$%&*'
-            let possuiCaracEspecial = false
-
-            for (let i = 0; i < senha.length; i++) {
-                if (senha[i] >= '0' && senha[i] <= '9') {
-                    qtdNumero++
-                } else if (caracterEspecial.indexOf(senha[i]) >= 0) {
-                    possuiCaracEspecial = true
-                }
-            }
-
-            if (qtdNumero < 2) {
-                validacao_senha.innerHTML = `Senha fraca! Insira ao menos 2 números`
-                validacao_senha.style.display = 'block'
-                return
-            }
-            if (!possuiCaracEspecial) {
-                validacao_senha.innerHTML = `Senha fraca! Insira ao menos 1 caractere especial (!@#$%&*)`
-                validacao_senha.style.display = 'block'
-                return
-            }
-
-            fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nome,
-        emailServer: email,
-        senhaServer: senha,
-        senhaConfirmadaServer: senhaConfirmada
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-           validacao_usuario.style.display = 'block'
-            validacao_email.style.display = 'block'
-            validacao_senha.style.display = 'block'
-            validacao_confSenha.style.display = 'block'
-
-          validacao_confSenha.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de nome...";
-
-          setTimeout(() => {
-            window.location = "./../login.html";
-          }, "2000");
-
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-
-    return false;
-  }
-
-    </script>
-
 </body>
+<script>
+    function cadastrar() {
+        var nome = document.getElementById('ipt_nome').value
+        var email = document.getElementById('ipt_email').value
+        var senha = document.getElementById('ipt_senha').value
+        var senhaConfirmada = document.getElementById('ipt_senhaConf').value
 
+        validacao_usuario.style.display = 'none'
+        validacao_email.style.display = 'none'
+        validacao_senha.style.display = 'none'
+        validacao_confSenha.style.display = 'none'
+
+        if (nome == '') {
+            validacao_usuario.innerHTML = `O campo de usuário deve ser preenchido`
+            validacao_usuario.style.display = 'block'
+            return
+        }
+        if (email == '') {
+            validacao_email.innerHTML = `O campo de Email deve ser preenchido`
+            validacao_email.style.display = 'block'
+            return
+        }
+        if (email.indexOf('@') < 0) {
+            validacao_email.innerHTML = `Insira um email válido`
+            validacao_email.style.display = 'block'
+            return
+        }
+        if (senha == '') {
+            validacao_senha.innerHTML = `O campo de senha deve ser preenchido`
+            validacao_senha.style.display = 'block'
+            return
+        }
+        if (senhaConfirmada != senha) {
+            validacao_confSenha.innerHTML = `As senhas não coincidem`
+            validacao_confSenha.style.display = 'block'
+            return
+        }
+        if (senha.length < 8) {
+            validacao_confSenha.innerHTML = `Senha muito curta! Mínimo de 8 caracteres`
+            validacao_confSenha.style.display = 'block'
+            return
+        }
+
+        let qtdNumero = 0
+        let caracterEspecial = '!@#$%&*'
+        let possuiCaracEspecial = false
+
+        for (let i = 0; i < senha.length; i++) {
+            if (senha[i] >= '0' && senha[i] <= '9') {
+                qtdNumero++
+            } else if (caracterEspecial.indexOf(senha[i]) >= 0) {
+                possuiCaracEspecial = true
+            }
+        }
+
+        if (qtdNumero < 2) {
+            validacao_senha.innerHTML = `Senha fraca! Insira ao menos 2 números`
+            validacao_senha.style.display = 'block'
+            return
+        }
+        if (!possuiCaracEspecial) {
+            validacao_senha.innerHTML = `Senha fraca! Insira ao menos 1 caractere especial (!@#$%&*)`
+            validacao_senha.style.display = 'block'
+            return
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha,
+                senhaConfirmadaServer: senhaConfirmada
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    validacao_usuario.style.display = 'block'
+                    validacao_email.style.display = 'block'
+                    validacao_senha.style.display = 'block'
+                    validacao_confSenha.style.display = 'block'
+
+                    validacao_confSenha.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de nome...";
+
+                    setTimeout(() => {
+                        window.location = "./../login.html";
+                    }, "2000");
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+
+</script>
 </html>
