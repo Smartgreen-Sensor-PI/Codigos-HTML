@@ -17,6 +17,10 @@ INSERT INTO Empresa (codigoEmpresa, CNPJ, nomeFantasia) VALUES
 ('COL321', '45678901000104', 'Colheita Vermelha'),
 ('EST654', '56789012000105', 'Estufa Dourada');
 
+-- para usuários do suporte
+INSERT INTO Empresa (codigoEmpresa, CNPJ, nomeFantasia) VALUES
+('SUP190', '11368546757764', 'Suporte');
+
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(40) NOT NULL,
