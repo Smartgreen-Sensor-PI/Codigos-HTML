@@ -71,7 +71,7 @@
 
       
       
-      console.log("FORM LOGIN: ", email);
+      console.log("FORM LOGIN: ", login);
       console.log("FORM SENHA: ", senha);
 
       fetch("/usuarios/autenticar", {
@@ -80,7 +80,7 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: email,
+                emailServer: login,
                 senhaServer: senha
             })
           }).then(function (resposta) {
@@ -94,9 +94,10 @@
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
                     
-                    if (email == "fernanda@fernada.com" && senha == "12345678!") {
+                    if (login == "fernanda@fernada.com" && senha == "12345678!") {
                       alert('Seja bem-vindo!')
                       window.location.href = "Site_Institucional\BobIA\public\areaSuporte(smartS3).html"
                     } 

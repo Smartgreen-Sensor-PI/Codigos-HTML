@@ -33,6 +33,11 @@
             <h2><i>Olá! Realize seu cadastro</i></h2>
 
             <div class="input-group">
+                <b>Código da empresa:</b>
+                <input class="inputs" type="text" id="ipt_codigoEmpresa" placeholder="Ex: TOP123">
+                <span id="validacao_codigo" class="msg_validacao"></span>
+            </div>
+            <div class="input-group">
                 <b>Digite seu nome:</b>
                 <input class="inputs" type="text" id="ipt_nome" placeholder="Seu usuário">
                 <span id="validacao_usuario" class="msg_validacao"></span>
@@ -55,7 +60,7 @@
                 <span id="validacao_confSenha" class="msg_validacao"></span>
             </div>
             <p style="font-size: 14px; margin-top: 10px;">
-                Já possui uma conta? <a href="./../login.html" style="color: #34492a; font-weight: bold;">Faça nome</a>
+                Já possui uma conta? <a href="./../login.html" style="color: #34492a; font-weight: bold;">Faça Login</a>
             </p>
             <button class="btn-verde" onclick="cadastrar()">Cadastrar</button>
         </div>
@@ -67,7 +72,7 @@
         var email = document.getElementById('ipt_email').value
         var senha = document.getElementById('ipt_senha').value
         var senhaConfirmada = document.getElementById('ipt_senhaConf').value
-
+        var codigoEmpresa = document.getElementById('ipt_codigoEmpresa').value
         validacao_usuario.style.display = 'none'
         validacao_email.style.display = 'none'
         validacao_senha.style.display = 'none'
@@ -101,6 +106,12 @@
         if (senha.length < 8) {
             validacao_confSenha.innerHTML = `Senha muito curta! Mínimo de 8 caracteres`
             validacao_confSenha.style.display = 'block'
+            return
+        }
+
+        if (codigoEmpresa == '') {
+            validacao_codigo.innerHTML = `Informe o código da empresa`
+            validacao_codigo.style.display = 'block'
             return
         }
 
@@ -138,7 +149,9 @@
                 nomeServer: nome,
                 emailServer: email,
                 senhaServer: senha,
-                senhaConfirmadaServer: senhaConfirmada
+                senhaConfirmadaServer: senhaConfirmada,
+                codigoEmpresaServer: codigoEmpresa
+
             }),
         })
             .then(function (resposta) {
@@ -158,7 +171,10 @@
                     }, "2000");
 
                 } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
+                    resposta.text().then(texto => {
+                        validacao_codigo.innerHTML = texto;
+                        validacao_codigo.style.display = "block";
+                    });
                 }
             })
             .catch(function (resposta) {
@@ -169,4 +185,5 @@
     }
 
 </script>
+
 </html>

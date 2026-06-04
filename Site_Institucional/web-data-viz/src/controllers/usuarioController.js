@@ -4,7 +4,8 @@ var aquarioModel = require("../models/aquarioModel");
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    
+
+
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -21,13 +22,13 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                                    res.json({
-                                        id: resultadoAutenticar[0].idUsuario,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                    });
-                
+                        res.json({
+                            id: resultadoAutenticar[0].idUsuario,
+                            email: resultadoAutenticar[0].email,
+                            nome: resultadoAutenticar[0].nome,
+                            fkEmpresa: resultadoAutenticar[0].fkEmpresa
+                        });
+
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -50,7 +51,8 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    
+    var codigoEmpresa = req.body.codigoEmpresaServer;
+
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -60,15 +62,23 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
 
+    }else if (codigoEmpresa == undefined) {
+        res.status(400).send("Código da empresa está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
+        usuarioModel.cadastrar(nome, email, senha, codigoEmpresa)
+.then(
+    function (resultado) {
+
+        if (resultado.affectedRows == 0) {
+            res.status(404).send("Código da empresa inválido");
+        } else {
+            res.json(resultado);
+        }
+
+    }
+).catch(
                 function (erro) {
                     console.log(erro);
                     console.log(
