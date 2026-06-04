@@ -5,9 +5,21 @@ USE smartgreen;
 
 CREATE TABLE Empresa( 
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+codigoEmpresa VARCHAR(10) UNIQUE,
 CNPJ CHAR(14) UNIQUE NOT NULL,
 nomeFantasia VARCHAR(45)
 );
+
+INSERT INTO Empresa (codigoEmpresa, CNPJ, nomeFantasia) VALUES
+('TOM123', '12345678000101', 'Tomate Nobre'),
+('VER456', '23456789000102', 'VerdeVita Estufas'),
+('AGR789', '34567890000103', 'AgroTom Prime'),
+('COL321', '45678901000104', 'Colheita Vermelha'),
+('EST654', '56789012000105', 'Estufa Dourada');
+
+-- para usuários do suporte
+INSERT INTO Empresa (codigoEmpresa, CNPJ, nomeFantasia) VALUES
+('SUP190', '11368546757764', 'Suporte');
 
 CREATE TABLE usuario(
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -56,7 +68,6 @@ fkEstufa INT NOT NULL,
 );
 
 
-
 CREATE TABLE registro_sensor(
 idRegistro INT auto_increment,
 temperatura DECIMAL(3,1) NOT NULL,
@@ -67,39 +78,37 @@ PRIMARY KEY (idRegistro,fkSensor),
 CONSTRAINT fkRegistro_sensor
 	FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor) 	
 );
+
+CREATE VIEW vw_status_estufa AS
+SELECT
+    e.idEstufa,
+    s.idSensor,
+    r.temperatura,
+    r.umidade,
+
+    CASE
+        WHEN r.temperatura > 30 THEN 'Alerta Temperatura Alta'
+        WHEN r.temperatura < 20 THEN 'Alerta Temperatura Baixa'
+        ELSE 'Temperatura OK'
+    END AS statusTemperatura,
+
+    CASE
+        WHEN r.umidade > 80 THEN 'Alerta Umidade Alta'
+        WHEN r.umidade < 50 THEN 'Alerta Umidade Baixa'
+        ELSE 'Umidade OK'
+    END AS statusUmidade
+
+FROM registro_sensor r
+JOIN sensor s ON r.fkSensor = s.idSensor
+JOIN estufa e ON s.fkEstufa = e.idEstufa;
 		
-    
-
-INSERT INTO Empresa (CNPJ, nomeFantasia) 
-VALUES ('12345678901234', 'Fazenda Top');
-
-INSERT INTO usuario (nome, email, senha, fkEmpresa) 
-VALUES ('Kauã', 'kaua.aaa@fazenda.com', 'senhaTop123', 1);
-
-INSERT INTO endereco (cep, complemento, numero, UF)
-VALUES ('10000000', 'Galpão Principal', 101, 'SP');
-
-INSERT INTO estufa (comprimento, largura, altura, fkEmpresa, fkEndereco)
-VALUES (50.0, 10.0, 3.5, 1, 1);
-
-INSERT INTO sensor (estado, localizacao, fkEstufa) 
-VALUES ('em funcionamento', 'Setor Norte', 1);
-
-INSERT INTO registro_sensor (umidade, temperatura, fkSensor) VALUES (60.0, 25.5, 1);
-INSERT INTO registro_sensor (umidade, temperatura, fkSensor) VALUES (50.0, 26.2, 1);
-INSERT INTO registro_sensor (umidade, temperatura, fkSensor) VALUES (99.0, 27.0, 1);
-
-
-SELECT 
-    u.nome AS 'Produtor',
-    emp.nomeFantasia AS 'Empresa',
-    est.idEstufa AS 'Numero da Estufa',
-    sen.localizacao AS 'Local do Sensor',
-    reg.temperatura AS 'Temperatura Registrada (°C)',
-    reg.umidade AS 'Umidade Registrada (%)',
-    reg.momento_registro AS 'Data e Hora'
+-- Para conferir se o usuário foi associado corretamente:        
+    SELECT
+u.idUsuario,
+u.nome,
+u.email,
+e.nomeFantasia,
+e.codigoEmpresa
 FROM usuario u
-JOIN Empresa emp ON u.fkEmpresa = emp.idEmpresa
-JOIN estufa est ON est.fkEmpresa = emp.idEmpresa
-JOIN sensor sen ON sen.fkEstufa = est.idEstufa
-JOIN registro_sensor reg ON reg.fkSensor = sen.idSensor;
+JOIN Empresa e
+ON u.fkEmpresa = e.idEmpresa;

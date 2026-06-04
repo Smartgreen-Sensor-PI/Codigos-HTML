@@ -19,7 +19,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="validarSessao(), buscarEstufas(),  atualizacaoPeriodica()">
 
     <div class="janela">
 
@@ -124,23 +124,41 @@
 
 <script>
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
+    function buscarEstufas() {
+
+    fetch(`/estufas/listar/${sessionStorage.ID_EMPRESA}`)
+    .then(res => res.json())
+    .then(dados => {
+
+        cardAquarios.innerHTML = "";
+
+        dados.forEach(estufa => {
+
+            cardAquarios.innerHTML += `
+                <div class="card-aquario">
+
+                    <div class="title-aquario">
+                        <h1>${estufa.complemento}</h1>
+                    </div>
+
+                    <div class="desc-aquario">
+
                         <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
+                            <p>${estufa.temperatura}°C</p>
                         </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
+
+                        <div class="umidade">
+                            <p>${estufa.umidade}%</p>
+                        </div>
+
                     </div>
-                    </div>
-                    `
+
+                </div>
+            `;
         });
-    }
+
+    });
+}
 
 </script>
 

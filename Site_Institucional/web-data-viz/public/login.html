@@ -53,6 +53,7 @@
   </body>
   <script>
     function entrar() {
+      
       let login = document.getElementById('ipt_login').value
       let senha = document.getElementById('ipt_senha').value
 
@@ -69,42 +70,42 @@
         return
       }
 
-      /*if (email == "fernanda@fernada.com" && senha == "12345678") {
-        alert('Seja bem-vindo!')
-        window.location.href = "./../suporte.html"
-      } */
+      
+      
+      console.log("FORM LOGIN: ", login);
+      console.log("FORM SENHA: ", senha);
 
-
-      console.log("FORM LOGIN: ", email);
-        console.log("FORM SENHA: ", senha);
-
-        fetch("/usuarios/autenticar", {
+      fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: email,
+                emailServer: login,
                 senhaServer: senha
             })
-        }).then(function (resposta) {
+          }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
+            
             if (resposta.ok) {
-                console.log(resposta);
-
+              console.log(resposta);
+              
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
                     
-
+                    if (login == "fernanda@fernada.com" && senha == "12345678!") {
+                      window.location.href = "http://localhost:3000"
+                    } 
+                    
                     setTimeout(function () {
-                        window.location = "./dashboard/cards(smartS3).html";
+                      window.location = "./dashboard/cards(smartS3).html";
                     }, 1000); // apenas para exibir o loading
-
+                    
                 });
 
             } else {

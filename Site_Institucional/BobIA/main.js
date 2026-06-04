@@ -26,6 +26,11 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "areaSuporte(smartS3).html"));
+});
+
+
 // inicializando o servidor
 app.listen(PORTA_SERVIDOR, () => {
     console.info(
