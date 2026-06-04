@@ -121,15 +121,28 @@ body, html {
 }
 
 .caixa-login {
-  background-color: rgb(217, 217, 217);
-  padding: 70px;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  width: 470px;
+  width: 600px;
+  height: 430px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   gap: 10px;
   box-shadow: 0 0 10px #0000001A;
-  height: 450px;
+  font-family: 'inter', sans-serif;
+  padding-top: 40px;
+}
+
+.caixa-login h1 {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 40px;
+  font-weight: 400px;
+  font-size: 37px ;
+  font-family: 'inter', sans-serif;
+  margin-right: 50px;
 }
 
 .caixa-cadastro {
@@ -150,7 +163,8 @@ body, html {
 }
 
 .btn-verde {
-  padding: 10px;
+  height: 35px;
+  width: 400px;
   background-color: #34492a;
   color: white;
   border: none;

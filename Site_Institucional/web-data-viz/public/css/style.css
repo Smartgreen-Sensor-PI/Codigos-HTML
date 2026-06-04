@@ -211,7 +211,7 @@ width: 100%;
 /* ===== HOME ===== */
 .home .hero {
   height: 100vh;
-  background: url("./../Imagens/tomate.png");
+  background: url("./Imagens/tomate.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
