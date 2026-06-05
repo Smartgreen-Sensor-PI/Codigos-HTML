@@ -18,6 +18,7 @@ INSERT INTO Empresa (codigoEmpresa, CNPJ, nomeFantasia) VALUES
 ('EST654', '56789012000105', 'Estufa Dourada');
 
 -- para usuários do suporte
+
 INSERT INTO Empresa (codigoEmpresa, CNPJ, nomeFantasia) VALUES
 ('SUP190', '11368546757764', 'Suporte');
 
@@ -79,28 +80,45 @@ CONSTRAINT fkRegistro_sensor
 	FOREIGN KEY (fkSensor) REFERENCES sensor(idSensor) 	
 );
 
+
 CREATE VIEW vw_status_estufa AS
 SELECT
     e.idEstufa,
-    s.idSensor,
+    e.fkEmpresa,
+    en.complemento AS nomeEstufa,
+
     r.temperatura,
     r.umidade,
+    r.momento_registro,
 
     CASE
-        WHEN r.temperatura > 30 THEN 'Alerta Temperatura Alta'
-        WHEN r.temperatura < 20 THEN 'Alerta Temperatura Baixa'
+        WHEN r.temperatura > 28 THEN 'Alerta Temperatura Alta'
+        WHEN r.temperatura < 15 THEN 'Alerta Temperatura Baixa'
         ELSE 'Temperatura OK'
     END AS statusTemperatura,
 
     CASE
-        WHEN r.umidade > 80 THEN 'Alerta Umidade Alta'
+        WHEN r.umidade > 70 THEN 'Alerta Umidade Alta'
         WHEN r.umidade < 50 THEN 'Alerta Umidade Baixa'
         ELSE 'Umidade OK'
     END AS statusUmidade
 
-FROM registro_sensor r
-JOIN sensor s ON r.fkSensor = s.idSensor
-JOIN estufa e ON s.fkEstufa = e.idEstufa;
+FROM estufa e
+
+JOIN endereco en
+    ON e.fkEndereco = en.idEndereco
+
+JOIN sensor s
+    ON s.fkEstufa = e.idEstufa
+
+JOIN registro_sensor r
+    ON r.fkSensor = s.idSensor
+
+WHERE r.idRegistro = (
+    SELECT MAX(r2.idRegistro)
+    FROM registro_sensor r2
+    WHERE r2.fkSensor = s.idSensor
+);
 		
 -- Para conferir se o usuário foi associado corretamente:        
     SELECT
@@ -112,3 +130,136 @@ e.codigoEmpresa
 FROM usuario u
 JOIN Empresa e
 ON u.fkEmpresa = e.idEmpresa;
+
+-- para teste dos gráficos
+
+INSERT INTO usuario (nome, email, senha, fkEmpresa)
+VALUES (
+    'Teste SmartGreen',
+    'teste@smartgreen.com',
+    '123456',
+    1
+);
+
+INSERT INTO endereco (
+    cep,
+    complemento,
+    numero,
+    UF
+)
+VALUES (
+    '09000000',
+    'Estufa Norte',
+    100,
+    'SP'
+);
+
+INSERT INTO endereco (
+    cep,
+    complemento,
+    numero,
+    UF
+)
+VALUES (
+    '09000001',
+    'Estufa Sul',
+    200,
+    'SP'
+);
+
+INSERT INTO estufa (
+    comprimento,
+    largura,
+    altura,
+    fkEmpresa,
+    fkEndereco
+)
+VALUES (
+    60.00,
+    25.00,
+    4.50,
+    1,
+    2
+);
+
+INSERT INTO estufa (
+    comprimento,
+    largura,
+    altura,
+    fkEmpresa,
+    fkEndereco
+)
+VALUES (
+    50.00,
+    20.00,
+    4.00,
+    1,
+    1
+);
+
+INSERT INTO sensor (
+    estado,
+    localizacao,
+    fkEstufa
+)
+VALUES (
+    'em funcionamento',
+    'Centro da Estufa',
+    1
+);
+
+INSERT INTO sensor (
+    estado,
+    localizacao,
+    fkEstufa
+)
+VALUES (
+    'em funcionamento',
+    'Lado Sul',
+    2
+);
+
+INSERT INTO registro_sensor (
+    temperatura,
+    umidade,
+    momento_registro,
+    fkSensor
+)
+VALUES
+(22.0, 65.0, '2026-06-05 08:00:00', 1),
+(22.8, 66.0, '2026-06-05 09:00:00', 1),
+(23.5, 67.0, '2026-06-05 10:00:00', 1),
+(24.2, 68.0, '2026-06-05 11:00:00', 1),
+(25.0, 69.0, '2026-06-05 12:00:00', 1),
+(25.8, 70.0, '2026-06-05 13:00:00', 1),
+(26.5, 72.0, '2026-06-05 14:00:00', 1),
+(27.1, 73.0, '2026-06-05 15:00:00', 1);
+
+INSERT INTO registro_sensor (
+    temperatura,
+    umidade,
+    momento_registro,
+    fkSensor
+)
+VALUES
+(31.0, 82.0, '2026-06-05 08:00:00', 2),
+(31.5, 83.0, '2026-06-05 09:00:00', 2),
+(32.0, 84.0, '2026-06-05 10:00:00', 2),
+(32.5, 85.0, '2026-06-05 11:00:00', 2),
+(33.0, 86.0, '2026-06-05 12:00:00', 2),
+(33.5, 87.0, '2026-06-05 13:00:00', 2),
+(34.0, 88.0, '2026-06-05 14:00:00', 2);
+
+SELECT
+r.temperatura,
+r.umidade,
+DATE_FORMAT(
+    r.momento_registro,
+    '%H:%i:%s'
+) AS momento_grafico
+FROM registro_sensor r
+JOIN sensor s
+    ON r.fkSensor = s.idSensor
+WHERE s.fkEstufa = 1
+ORDER BY r.momento_registro DESC
+LIMIT 7;

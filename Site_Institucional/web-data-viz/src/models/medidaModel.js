@@ -1,31 +1,60 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idAquario, limite_linhas) {
+function buscarUltimasMedidas(idEstufa, limite_linhas) {
 
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    FROM medida
-                    WHERE fk_aquario = ${idAquario}
-                    ORDER BY id DESC LIMIT ${limite_linhas}`;
+    var instrucaoSql = `
+        SELECT
+            r.temperatura,
+            r.umidade,
+            r.momento_registro,
+            DATE_FORMAT(
+                r.momento_registro,
+                '%H:%i:%s'
+            ) AS momento_grafico
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+        FROM registro_sensor r
+
+        JOIN sensor s
+            ON r.fkSensor = s.idSensor
+
+        WHERE s.fkEstufa = ${idEstufa}
+
+        ORDER BY r.momento_registro DESC
+
+        LIMIT ${limite_linhas};
+    `;
+
+    console.log(instrucaoSql);
+
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idAquario) {
+function buscarMedidasEmTempoReal(idEstufa) {
 
-    var instrucaoSql = `SELECT 
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-                        fk_aquario 
-                        FROM medida WHERE fk_aquario = ${idAquario} 
-                    ORDER BY id DESC LIMIT 1`;
+    var instrucaoSql = `
+        SELECT
+            r.temperatura,
+            r.umidade,
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+            DATE_FORMAT(
+                r.momento_registro,
+                '%H:%i:%s'
+            ) AS momento_grafico
+
+        FROM registro_sensor r
+
+        JOIN sensor s
+            ON r.fkSensor = s.idSensor
+
+        WHERE s.fkEstufa = ${idEstufa}
+
+        ORDER BY r.momento_registro DESC
+
+        LIMIT 1;
+    `;
+
+    console.log(instrucaoSql);
+
     return database.executar(instrucaoSql);
 }
 

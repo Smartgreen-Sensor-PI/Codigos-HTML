@@ -26,8 +26,8 @@
   </header>
 
   <div class="caixa-login">
-    <h1>Realize seu login! 🍅</h1>
 
+    <h1>Realize seu login! 🍅</h1>
     <div class="input-group">
       <b>Digite seu usuário:</b>
       <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
@@ -39,7 +39,6 @@
       <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
       <span id="validacao_senha" class="msg_validacao"></span>
     </div>
-
     <p>Não possui cadastro? <a href="cadastro.html">Clique aqui</a></p>
 
     <button class="btn-verde" onclick="entrar()">Entrar</button>
@@ -63,34 +62,67 @@
       validacao_senha.style.display = `block`
       return
     }
-
     console.log("FORM LOGIN: ", login);
     console.log("FORM SENHA: ", senha);
 
     fetch("/usuarios/autenticar", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ emailServer: login, senhaServer: senha })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: login,
+        senhaServer: senha
+      })
     }).then(function (resposta) {
       console.log("ESTOU NO THEN DO entrar()!")
+
       if (resposta.ok) {
+        console.log(resposta);
+
         resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
           sessionStorage.EMAIL_USUARIO = json.email;
           sessionStorage.NOME_USUARIO = json.nome;
           sessionStorage.ID_USUARIO = json.id;
           sessionStorage.FK_EMPRESA = json.fkEmpresa;
-          if (login == "fernanda@fernada.com" && senha == "12345678!") {
+          fetch(`/estufas/${json.fkEmpresa}`)
+            .then(res => res.json())
+            .then(estufas => {
+
+              console.log("Estufas encontradas:", estufas);
+
+              sessionStorage.ESTUFAS = JSON.stringify(estufas);
+
+              if (login == "fernanda@fernada.com" && senha == "12345678!") {
             window.location.href = "http://localhost:3000"
-          }
-          setTimeout(function () {
-            window.location = "./dashboard/cards(smartS3).html";
-          }, 1000);
+          } else {
+
+              window.location = "./dashboard/cards(smartS3).html"};
+
+            })
+            .catch(erro => {
+              console.error("Erro ao buscar estufas:", erro);
+            });
+
         });
+
       } else {
-        resposta.text().then(texto => { console.error(texto); });
+
+        console.log("Houve um erro ao tentar realizar o login!");
+
+        resposta.text().then(texto => {
+          console.error(texto);
+        });
       }
-    }).catch(function (erro) { console.log(erro); })
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
     return false;
+
   }
 </script>
 </html>
