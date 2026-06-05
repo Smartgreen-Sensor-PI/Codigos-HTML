@@ -98,9 +98,7 @@
           sessionStorage.FK_EMPRESA = json.fkEmpresa;
 
 
-          if (login == "fernanda@fernada.com" && senha == "12345678!") {
-            window.location.href = "http://localhost:3000"
-          }
+          
 
           fetch(`/estufas/${json.fkEmpresa}`)
             .then(res => res.json())
@@ -110,7 +108,11 @@
 
               sessionStorage.ESTUFAS = JSON.stringify(estufas);
 
-              window.location = "./dashboard/cards(smartS3).html";
+              if (login == "fernanda@fernada.com" && senha == "12345678!") {
+            window.location.href = "http://localhost:3000"
+          } else {
+
+              window.location = "./dashboard/cards(smartS3).html"};
 
             })
             .catch(erro => {
