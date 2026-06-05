@@ -2,13 +2,14 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png"
+        type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartGreen | Dashboards</title>
 
-    
+
     <link rel="stylesheet" href="../css/styleDashS3.css">
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
@@ -81,7 +82,7 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    let proximaAtualizacao;
+    let proximaAtualizacao = {};
 
     window.onload = exibirEstufasDoUsuario();
 
@@ -115,12 +116,12 @@
     }
 
     function alterarTitulo(idEstufa) {
-    var tituloEstufa = document.getElementById(`tituloEstufa${idEstufa}`)
-    var descricao = JSON.parse(sessionStorage.ESTUFAS).find(item => item.id == idEstufa).descricao;
-    
-    // Mudei o #e6005a (rosa) para #2e6f40 (verde-folha) para combinar com a estufa!
-    tituloEstufa.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #2e6f40'>" + descricao + "</span>"
-}
+        var tituloEstufa = document.getElementById(`tituloEstufa${idEstufa}`)
+        var descricao = JSON.parse(sessionStorage.ESTUFAS).find(item => item.id == idEstufa).descricao;
+
+        // Mudei o #e6005a (rosa) para #2e6f40 (verde-folha) para combinar com a estufa!
+        tituloEstufa.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #2e6f40'>" + descricao + "</span>"
+    }
 
     function exibirEstufa(idEstufa) {
         let todosOsGraficos = JSON.parse(sessionStorage.ESTUFAS);
@@ -169,8 +170,8 @@
 
         alterarTitulo(idEstufa)
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
+        if (proximaAtualizacao[idEstufa]) {
+            clearTimeout(proximaAtualizacao[idEstufa]);
         }
 
         fetch(`/medidas/ultimas/${idEstufa}`, { cache: 'no-store' }).then(function (response) {
@@ -303,12 +304,14 @@
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idEstufa, dados, myChart), 2000);
+                    proximaAtualizacao[idEstufa] = setTimeout(() =>
+                        atualizarGrafico(idEstufa, dados, myChart), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idEstufa, dados, myChart), 2000);
+                proximaAtualizacao[idEstufa] = setTimeout(() =>
+                    atualizarGrafico(idEstufa, dados, myChart), 2000);
             }
         })
             .catch(function (error) {
