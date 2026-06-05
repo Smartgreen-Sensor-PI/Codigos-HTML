@@ -1,18 +1,16 @@
 var database = require("../database/config");
 
-function buscarEstufasPorEmpresa(empresaId) {
+function listar(fkEmpresa){
 
     var instrucaoSql = `
         SELECT *
         FROM vw_status_estufa
-        WHERE fkEmpresa = ${empresaId};
+        WHERE fkEmpresa = ${fkEmpresa};
     `;
-
-    console.log(instrucaoSql);
 
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    buscarEstufasPorEmpresa
+    listar
 }

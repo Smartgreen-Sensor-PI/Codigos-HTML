@@ -434,3 +434,12 @@ body {
     font-style: italic;
 }
 
+.ok{
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.alerta{
+    color: #c62828;
+    font-weight: bold;
+}

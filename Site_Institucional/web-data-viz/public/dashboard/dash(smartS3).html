@@ -90,37 +90,37 @@
         var estufas = JSON.parse(sessionStorage.ESTUFAS);
         estufas.forEach(item => {
             document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirEstufa(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
+            <button class="btn-chart" onclick="exibirEstufa(${item.idEstufa})" id="btnAquario${item.idEstufa}">${item.nomeEstufa}</button>
             `
 
             document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
+                <div id="grafico${item.idEstufa}" class="display-none">
                     <h3 class="tituloGraficos">
-                        <span id="tituloEstufa${item.id}">${item.descricao}</span>
+                        <span id="tituloEstufa${item.idEstufa}">${item.nomeEstufa}</span>
                     </h3>
                     <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
+                        <canvas id="myChartCanvas${item.idEstufa}"></canvas>
                     </div>
                     <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
+                        <p id="avisoCaptura${item.idEstufa}" style="color: white"></p>
                     </div>
                 </div>
             `
 
-            obterDadosGrafico(item.id)
+            obterDadosGrafico(item.idEstufa);       
         });
 
         if (estufas.length > 0) {
-            exibirEstufa(estufas[0].id)
+            exibirEstufa(estufas[0].idEstufa)
         }
     }
 
     function alterarTitulo(idEstufa) {
         var tituloEstufa = document.getElementById(`tituloEstufa${idEstufa}`)
-        var descricao = JSON.parse(sessionStorage.ESTUFAS).find(item => item.id == idEstufa).descricao;
+        var nomeEstufa = JSON.parse(sessionStorage.ESTUFAS).find(item => item.idEstufa    == idEstufa).nomeEstufa;
 
         // Mudei o #e6005a (rosa) para #2e6f40 (verde-folha) para combinar com a estufa!
-        tituloEstufa.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #2e6f40'>" + descricao + "</span>"
+        tituloEstufa.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #2e6f40'>" + nomeEstufa + "</span>"
     }
 
     function exibirEstufa(idEstufa) {
@@ -128,15 +128,15 @@
 
         for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idEstufa) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
+            if (todosOsGraficos[i].idEstufa != idEstufa) {
+                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].idEstufa}`)
                 if (elementoAtual.classList.contains("display-block")) {
                     elementoAtual.classList.remove("display-block")
                 }
                 elementoAtual.classList.add("display-none")
 
                 // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].idEstufa}`)
                 if (btnAtual.classList.contains("btn-pink")) {
                     btnAtual.classList.remove("btn-pink")
                 }

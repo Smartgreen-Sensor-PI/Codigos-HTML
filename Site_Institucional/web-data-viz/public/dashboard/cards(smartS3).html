@@ -2,7 +2,8 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png"
+        type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +13,14 @@
     <link rel="stylesheet" href="../css/styleDashS3.css">
 
     <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
+    <script src="../js/alertas.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), buscarEstufas(),  atualizacaoPeriodica()">
+<body onload="validarSessao(), buscarEstufas()">
 
     <div class="janela">
 
@@ -126,39 +127,57 @@
 
     function buscarEstufas() {
 
-    fetch(`/estufas/listar/${sessionStorage.ID_EMPRESA}`)
-    .then(res => res.json())
-    .then(dados => {
+        console.log("FK_EMPRESA:", sessionStorage.FK_EMPRESA);
 
-        cardAquarios.innerHTML = "";
+        fetch(`/estufas/${sessionStorage.FK_EMPRESA}`)
+            .then(res => res.json())
+            .then(dados => {
 
-        dados.forEach(estufa => {
+                console.log(dados);
 
-            cardAquarios.innerHTML += `
-                <div class="card-aquario">
+                sessionStorage.setItem('ESTUFAS', JSON.stringify(dados));
 
-                    <div class="title-aquario">
-                        <h1>${estufa.complemento}</h1>
-                    </div>
+                cardAquarios.innerHTML = "";
 
-                    <div class="desc-aquario">
+                dados.forEach(estufa => {
 
-                        <div class="temperatura">
-                            <p>${estufa.temperatura}°C</p>
-                        </div>
+                    cardAquarios.innerHTML += `
+<div class="card-aquario">
 
-                        <div class="umidade">
-                            <p>${estufa.umidade}%</p>
-                        </div>
+    <div class="title-aquario">
+        <h1>${estufa.nomeEstufa}</h1>
+    </div>
 
-                    </div>
+    <div class="desc-aquario">
 
-                </div>
-            `;
-        });
+        <div class="temperatura">
+            <p>${estufa.temperatura}°C</p>
+        </div>
 
-    });
-}
+        <div class="umidade">
+            <p>${estufa.umidade}%</p>
+        </div>
+
+    </div>
+
+    <div class="status-estufa">
+
+    <p class="${estufa.statusTemperatura.includes('Alerta') ? 'alerta' : 'ok'}">
+        <b>Temperatura:</b> ${estufa.statusTemperatura}
+    </p>
+
+    <p class="${estufa.statusUmidade.includes('Alerta') ? 'alerta' : 'ok'}">
+        <b>Umidade:</b> ${estufa.statusUmidade}
+    </p>
+
+</div>
+
+</div>
+`;
+                });
+
+            });
+    }
 
 </script>
 
