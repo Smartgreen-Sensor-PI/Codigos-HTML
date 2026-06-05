@@ -1,128 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SmartGreen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/logcad.css">
-  <title>Login - SmartGreen🍀</title>
-  <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
   <header class="navbar">
-    <div class="logo"> <a href="index.html"><img
-          src="css/Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview-removebg-preview (1).png" alt=""
-          class="img-logo"> <a href="" class="logo-frase">SmartGreen Sensor</a></a></div>
-   <nav class="menu">
-      <a href="index.html#home">início</a>
+    <div class="logo">
+      <img src="css/Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview-removebg-preview (1).png" alt="Logo" class="logo-img">
+      <a href="index.html">SmartGreen Sensor</a>
+    </div>
+    <nav class="menu">
+      <a href="index.html#home">Início</a>
       <a href="index.html#sobre">Sobre nós</a>
-      <a href="index.html#produtos">Produtos</a>
-      <a href="index.html#missao">Nossa missão</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="index.html#produtos">Produto</a>
+      <a href="index.html#missao">Missão</a>
       <a href="calculeseuprejuízo.html">Calcule seu prejuízo</a>
     </nav>
-    <div id="navBotoes">
-      <a class="perfil" href="login.html">👤</a>
-      <a href="login.html" class="btn-login" id="btnEntrar">Login</a>
-    </div>
+    <a href="login.html" class="btn-login">Login</a>
   </header>
 
-    <div class="caixa-login">
-      <h1 >Boas-vindas a<br>SmartGreen🍀</h1>
+  <div class="caixa-login">
+    <h1>Realize seu login! 🍅</h1>
 
-      <div class="input-group">
-        <b>Digite seu usuário:</b>
-        <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
-        <span id="validacao_usuario" class="msg_validacao"></span>
-      </div>
-
-      <div class="input-group">
-        <b>Digite sua senha:</b>
-        <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
-        <span id="validacao_senha" class="msg_validacao"></span>
-      </div>
-
-      <p style="font-size: 14px;">
-        Não possui cadastro? <a href="cadastro.html" style="color: #34492a; font-weight: bold;">Clique aqui</a>
-      </p>
-
-      <button class="btn-verde" onclick="entrar()">Entrar</button>
+    <div class="input-group">
+      <b>Digite seu usuário:</b>
+      <input class="inputs" type="text" id="ipt_login" placeholder="Seu usuário">
+      <span id="validacao_usuario" class="msg_validacao"></span>
     </div>
-  </body>
-  <script>
-    function entrar() {
-      
-      let login = document.getElementById('ipt_login').value
-      let senha = document.getElementById('ipt_senha').value
 
-      validacao_usuario.style.display = 'none'
-      validacao_senha.style.display = 'none'
+    <div class="input-group">
+      <b>Digite sua senha:</b>
+      <input class="inputs" type="password" id="ipt_senha" placeholder="Sua senha">
+      <span id="validacao_senha" class="msg_validacao"></span>
+    </div>
 
-      if (login == '') {
-        validacao_usuario.innerHTML = `Por favor, insira seu usuário`
-        validacao_usuario.style.display = `block`
-      }
-      if (senha == '') {
-        validacao_senha.innerHTML = `Por favor insira sua senha`
-        validacao_senha.style.display = `block`
-        return
-      }
+    <p>Não possui cadastro? <a href="cadastro.html">Clique aqui</a></p>
 
-      
-      
-      console.log("FORM LOGIN: ", login);
-      console.log("FORM SENHA: ", senha);
+    <button class="btn-verde" onclick="entrar()">Entrar</button>
+  </div>
 
-      fetch("/usuarios/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: login,
-                senhaServer: senha
-            })
-          }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-            
-            if (resposta.ok) {
-              console.log(resposta);
-              
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.FK_EMPRESA = json.fkEmpresa;
-                    
-                    if (login == "fernanda@fernada.com" && senha == "12345678!") {
-                      window.location.href = "http://localhost:3000"
-                    } 
-                    
-                    setTimeout(function () {
-                      window.location = "./dashboard/cards(smartS3).html";
-                    }, 1000); // apenas para exibir o loading
-                    
-                });
+</body>
+<script>
+  function entrar() {
+    let login = document.getElementById('ipt_login').value
+    let senha = document.getElementById('ipt_senha').value
 
-            } else {
+    validacao_usuario.style.display = 'none'
+    validacao_senha.style.display = 'none'
 
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
-    
+    if (login == '') {
+      validacao_usuario.innerHTML = `Por favor, insira seu usuário`
+      validacao_usuario.style.display = `block`
     }
-  </script>
+    if (senha == '') {
+      validacao_senha.innerHTML = `Por favor insira sua senha`
+      validacao_senha.style.display = `block`
+      return
+    }
+
+    console.log("FORM LOGIN: ", login);
+    console.log("FORM SENHA: ", senha);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ emailServer: login, senhaServer: senha })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+      if (resposta.ok) {
+        resposta.json().then(json => {
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.FK_EMPRESA = json.fkEmpresa;
+          if (login == "fernanda@fernada.com" && senha == "12345678!") {
+            window.location.href = "http://localhost:3000"
+          }
+          setTimeout(function () {
+            window.location = "./dashboard/cards(smartS3).html";
+          }, 1000);
+        });
+      } else {
+        resposta.text().then(texto => { console.error(texto); });
+      }
+    }).catch(function (erro) { console.log(erro); })
+    return false;
+  }
+</script>
 </html>

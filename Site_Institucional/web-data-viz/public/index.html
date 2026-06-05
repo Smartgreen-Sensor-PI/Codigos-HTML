@@ -3,99 +3,135 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>SmartGreen 🍀</title>
-  <link rel="shortcut icon" type="image/x-icon" href="Imagens/aba.png">
-  <link rel="stylesheet" href="./css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartGreen Sensor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="home">
+<body>
 
   <header class="navbar">
-    <div class="logo"> <a href="#home"><img
-          src="css/Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview-removebg-preview (1).png"
-          alt="" class="img-logo"> <a href="index.html" class="#home">SmartGreen Sensor</a></a></div>
+    <div class="logo">
+      <img src="css/Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview-removebg-preview (1).png"
+        alt="Logo" class="logo-img">
+      <a href="#home">SmartGreen Sensor</a>
+    </div>
     <nav class="menu">
-      <a href="#home">início</a>
+      <a href="#home">Início</a>
       <a href="#sobre">Sobre nós</a>
-      <a href="#produtos">Produtos</a>
-      <a href="#missao">Nossa missão</a>
+      <a href="#como-funciona">funcionamento</a>
+      <a href="#produtos">Produto</a>
+      <a href="#missao">Missão</a>
       <a href="calculeseuprejuízo.html">Calcule seu prejuízo</a>
     </nav>
-    <div id="navBotoes">
-      <a class="perfil" href="login.html">👤</a>
-      <a href="login.html" class="btn-login" id="btnEntrar">Login</a>
-    </div>
+    <a href="login.html" class="btn-login">Login</a>
   </header>
 
-  <div class="conteudo-pagina">
-
-    <section id="home" class="hero">
-      <div class="conteudo">
-        <h1>Smart<span>Green</span> Sensor</h1>
-        <p>Precisão que transforma dados em produtividade.</p>
-      </div>
-    </section>
-
-    <section class="nos" id="sobre">
-      <h1 class="titulo">Sobre <span style="color: #0080006a;">nós</span></h1>
-      <div class="conteudo2">
-        <div class="quadro">
-          <img src="./css/Imagens/tomatinhos.jpg">
+  <section id="home" class="hero">
+    <div class="hero-conteudo">
+      <h1>SmartGreen <span>Sensor</span></h1>
+      <p>Monitoramento de temperatura e umidade em tempo real para estufas de tomate.</p>
+      <a href="#produtos" class="btn-verde">Conheça o produto</a>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">18-25°C</span>
+          <span class="stat-label">Faixa ideal de temperatura para tomates</span>
         </div>
-        <div class="divisor"></div>
-        <h3 class="caixa-texto">A SmartGreen Sensor nasceu com o propósito de transformar a forma como produtores cuidam
-          de suas estufas, trazendo tecnologia, precisão e segurança para o cultivo agrícola. Nosso foco está em
-          resolver
-          um dos principais desafios enfrentados na produção de tomates: o controle adequado da temperatura.
-          Sabemos que pequenas variações térmicas podem causar grandes prejuízos. Temperaturas fora do ideal afetam
-          diretamente o desenvolvimento das plantas, comprometendo a qualidade dos frutos e reduzindo a produtividade.
-          Pensando nisso, desenvolvemos soluções inteligentes de monitoramento que permitem acompanhar, em tempo real,
-          as
-          condições dentro das estufas.</h3>
-      </div>
-    </section>
-
-    <section class="nos" id="produtos">
-      <h1 class="titulo">Prod<span style="color: #0080006a;">utos</span></h1>
-      <div class="conteudo2">
-        <div class="quadro">
-          <img src="css/Imagens/Produto.png">
+        <div class="stat-divisor"></div>
+        <div class="stat">
+          <span class="stat-porc">50-70%</span>
+          <span class="stat-label">Faixa ideal de umidade para tomates</span>
         </div>
-        <div class="divisor"></div>
-        <h3 class="caixa-texto">O nosso produto consiste em um sistema de monitoramento IoT para estufas agrícolas
-          utilizando sensores de temperatura, instalados para coletar dados em tempo real e enviá-los a uma plataforma
-          online acessível por computador, assim o sistema permitirá o acompanhamento contínuo das condições térmicas do
-          ambiente, com envio de alertas automáticos quando a temperatura estiver fora dos padrões ideais para o
-          cultivo.
-          A proposta tem como objetivo melhorar a qualidade do cultivo, reduzir perdas e aumentar a produtividade por
-          meio
-          da automação e do monitoramento inteligente.</h3>
-      </div>
-    </section>
-
-    <section class="nos" id="missao">
-      <h1 class="titulo">Nossa <span style="color: #0080006a;">Missão</span></h1>
-      <div class="conteudo2">
-        <div class="quadro">
-          <img src="css/Imagens/Nossa Missão.jpg">
+        <div class="stat-divisor"></div>
+        <div class="stat">
+          <span class="stat-num">40%</span>
+          <span class="stat-label">Redução de perdas estimada</span>
         </div>
-        <div class="divisor"></div>
-        <h3 class="caixa-texto">Nossa missão é transformar o cultivo em estufas com tecnologia, oferecendo mais
-          controle,
-          eficiência e segurança, aumentando a produtividade e garantindo a qualidade dos tomates com monitoramento de
-          temperatura em tempo real. Acreditamos que dados precisos e acompanhamento contínuo ajudam a reduzir perdas,
-          otimizar recursos e melhorar a tomada de decisões, levando mais inovação, sustentabilidade e resultados aos
-          produtores.
-        </h3>
+        <div class="stat-divisor"></div>
+        <div class="stat">
+          <span class="stat-num">24/7</span>
+          <span class="stat-label">Monitoramento contínuo</span>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
+  <section id="sobre" class="secao">
+    <div class="secao-inner">
+      <img src="css/Imagens/tomatinhos.jpg" alt="Tomates em estufa">
+      <div class="secao-texto">
+        <h2>Sobre <span>nós</span></h2>
+        <p>A SmartGreen Sensor nasceu para resolver um desafio real: pequenas variações de temperatura dentro de uma
+          estufa podem comprometer semanas de cultivo.</p>
+        <p>Nosso foco está em oferecer monitoramento acessível e preciso para produtores de tomate que precisam agir
+          antes que o prejuízo aconteça — com tecnologia, precisão e segurança para o cultivo agrícola.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="secao fundo-claro">
+    <div class="secao-centro">
+      <h2>Como <span>funciona</span></h2>
+      <p class="subtitulo">Três etapas simples, controle total da sua estufa.</p>
+      <div class="passos">
+        <div class="passo">
+          <div class="passo-num">01</div>
+          <h3>Sensor instalado</h3>
+          <p>O dispositivo IoT é instalado dentro da estufa e começa a coletar temperatura e umidade continuamente.</p>
+        </div>
+        <div class="passo-seta">→</div>
+        <div class="passo">
+          <div class="passo-num">02</div>
+          <h3>Dados em tempo real</h3>
+          <p>As leituras são enviadas automaticamente para a plataforma online, acessível por qualquer computador.</p>
+        </div>
+        <div class="passo-seta">→</div>
+        <div class="passo">
+          <div class="passo-num">03</div>
+          <h3>Alerta imediato</h3>
+          <p>Quando a temperatura sai da faixa ideal, o sistema dispara um alerta antes que a planta sofra dano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="produtos" class="secao">
+    <div class="secao-inner inverso">
+      <img src="css/Imagens/Produto.png" alt="Produto SmartGreen">
+      <div class="secao-texto">
+        <h2>Nosso <span>Produto</span></h2>
+        <p>Um sistema IoT com sensores de temperatura e umidade instalados na estufa. Os dados são enviados em tempo
+          real para uma plataforma online com histórico e alertas automáticos.</p>
+        <ul class="lista-features">
+          <li>Leitura de temperatura e umidade em tempo real</li>
+          <li>Alertas automáticos fora da faixa ideal</li>
+          <li>Histórico de dados acessível na plataforma</li>
+          <li>Instalação simples, sem necessidade de técnico</li>
+        </ul>
+        <a href="calculeseuprejuízo.html" class="btn-verde">Calcule quanto você pode estar perdendo →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="missao" class="secao fundo-claro">
+    <div class="secao-inner">
+      <img src="css/Imagens/Nossa Missão.jpg" alt="Nossa Missão">
+      <div class="secao-texto">
+        <h2>Nossa <span>Missão</span></h2>
+        <p>Transformar o cultivo em estufas com tecnologia acessível — oferecendo mais controle, reduzindo perdas e
+          aumentando a produtividade.</p>
+        <p>Acreditamos que dados precisos e acompanhamento contínuo mudam o resultado de uma safra, levando mais
+          inovação e sustentabilidade aos produtores.</p>
+      </div>
+    </div>
+  </section>
 
   <footer class="rodape">
-    <p>© 2026 SmartGreen🍀 - Todos os direitos reservados</p>
-    <p>Contato: smartgreen@email.com</p>
+    <p>© 2026 SmartGreen Sensor — Todos os direitos reservados</p>
+    <p>smartgreen@email.com</p>
   </footer>
 
 </body>
+
 </html>
