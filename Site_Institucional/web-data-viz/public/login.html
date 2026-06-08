@@ -60,7 +60,6 @@
     if (senha == '') {
       validacao_senha.innerHTML = `Por favor insira sua senha`
       validacao_senha.style.display = `block`
-      return
     }
     console.log("FORM LOGIN: ", login);
     console.log("FORM SENHA: ", senha);
@@ -95,7 +94,7 @@
 
               sessionStorage.ESTUFAS = JSON.stringify(estufas);
 
-              if (login == "fernanda@fernada.com" && senha == "12345678!") {
+              if (login == "fernanda@empresa.com" && senha == "12345678!") {
             window.location.href = "http://localhost:3000"
           } else {
 
@@ -111,9 +110,9 @@
       } else {
 
         console.log("Houve um erro ao tentar realizar o login!");
+        resposta.text().then(texto => {validacao_senha.innerHTML = texto; validacao_senha.style.display = "block";
 
-        resposta.text().then(texto => {
-          console.error(texto);
+        console.error(texto);
         });
       }
 
