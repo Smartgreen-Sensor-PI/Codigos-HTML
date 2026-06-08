@@ -200,12 +200,12 @@ body {
   margin-top: 12px;
 }
 
-.alerta {
+p.alerta {
     color: red;
     font-weight: bold;
 }
 
-.ok {
+p.ok {
     color: green;
     font-weight: bold;
 }
