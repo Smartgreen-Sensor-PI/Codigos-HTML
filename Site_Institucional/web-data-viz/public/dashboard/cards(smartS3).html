@@ -89,10 +89,10 @@
                 <div class="umidade"><p>${estufa.umidade}%</p></div>
               </div>
               <div class="status-estufa">
-                <p class="${estufa.statusTemperatura.includes('Alerta') ? 'alerta' : 'ok'}">
+                <p class="${estufa.statusTemperatura.includes('Alerta') || estufa.statusTemperatura.includes('Perigo') ? 'alerta' : 'ok'}">
                   <b>Temperatura:</b> ${estufa.statusTemperatura}
                 </p>
-                <p class="${estufa.statusUmidade.includes('Alerta') ? 'alerta' : 'ok'}">
+                <p class="${estufa.statusUmidade.includes('Alerta') || estufa.statusUmidade.includes('Perigo') ? 'alerta' : 'ok'}">
                   <b>Umidade:</b> ${estufa.statusUmidade}
                 </p>
               </div>
