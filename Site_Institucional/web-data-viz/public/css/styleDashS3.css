@@ -287,11 +287,20 @@ body {
   flex-direction: column;
   gap: 4px;
 }
-
 .status-estufa p {
   font-size: 10px;
   font-weight: 300;
   color: #3d5c38;
+}
+.status-estufa .alerta {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+.status-estufa .ok {
+    color: green !important;
+    font-weight: bold !important;
+>>>>>>> 36f8e42d4a7417a025917e92067b46740d8049af
 }
 
 .cor-alerta {
