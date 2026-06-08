@@ -1,184 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png"
-        type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartGreen | Tempo Real</title>
-
-
-    <link rel="stylesheet" href="../css/styleDashS3.css">
-
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alertas.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+  <link rel="shortcut icon" href="../Imagens/SmartGreen_Logo_with_Greenhouse_and_Tomato_Icon-removebg-preview.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartGreen | Tempo Real</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styleDashS3.css">
+  <script src="../js/sessao.js"></script>
+  <script src="../js/alertas.js"></script>
 </head>
 
 <body onload="validarSessao(), buscarEstufas()">
+  <div class="janela">
 
-    <div class="janela">
-
-        <div class="header-left dash-header">
-
-            <h1>SmartGreen</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Estufas</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="dash(smartS3).html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="../assets/Manual Usuário.pdf" target="_blank">
-                    <h3>Manual do Cliente</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
-
-        <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas de <span style="color: #c58a1e">Temperatura</span>
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=15°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>22°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=28°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=35°C</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas de <span style="color: #6493a5">Umidade</span>
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=40%</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=50%</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>60%</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=70%</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=85%</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cards" id="cardAquarios">
-
-            </div>
-
-        </div>
-
+    <div class="header-left">
+      <h1>SmartGreen</h1>
+      <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+      </div>
+      <div class="btn-nav">
+        <h3>Estufas</h3>
+      </div>
+      <div class="btn-nav-white">
+        <a href="dash(smartS3).html"><h3>Gráficos</h3></a>
+      </div>
+      <div class="btn-nav-white">
+        <a href="../assets/Manual_Usuario.pdf" target="_blank"><h3>Manual do Cliente</h3></a>
+      </div>
+      <div class="btn-logout" onclick="limparSessao()">
+        <h3>Sair</h3>
+      </div>
     </div>
 
+    <div class="dash">
+      <div id="alerta"></div>
+
+      <div class="area-parametros-alerta">
+        <p class="titulo-legenda">
+          Legenda — Alertas de <span style="color:#c58a1e">Temperatura</span>
+        </p>
+        <div class="parametros-alerta">
+          <div class="item-regua perigo-frio"><p>Perigo</p><p>&lt;=5°C</p></div>
+          <div class="item-regua alerta-frio"><p>Alerta</p><p>&lt;=15°C</p></div>
+          <div class="item-regua ideal"><p>Ideal</p><p>22°C</p></div>
+          <div class="item-regua alerta-quente"><p>Alerta</p><p>&gt;=28°C</p></div>
+          <div class="item-regua perigo-quente"><p>Perigo</p><p>&gt;=35°C</p></div>
+        </div>
+      </div>
+
+      <div class="area-parametros-alerta">
+        <p class="titulo-legenda">
+          Legenda — Alertas de <span style="color:#3d7a8a">Umidade</span>
+        </p>
+        <div class="parametros-alerta">
+          <div class="item-regua perigo-frio"><p>Perigo</p><p>&lt;=40%</p></div>
+          <div class="item-regua alerta-frio"><p>Alerta</p><p>&lt;=50%</p></div>
+          <div class="item-regua ideal"><p>Ideal</p><p>60%</p></div>
+          <div class="item-regua alerta-quente"><p>Alerta</p><p>&gt;=70%</p></div>
+          <div class="item-regua perigo-quente"><p>Perigo</p><p>&gt;=85%</p></div>
+        </div>
+      </div>
+
+      <div class="cards" id="cardAquarios"></div>
+    </div>
+
+  </div>
 </body>
 
 <script>
-
-    function buscarEstufas() {
-
-        console.log("FK_EMPRESA:", sessionStorage.FK_EMPRESA);
-
-        fetch(`/estufas/${sessionStorage.FK_EMPRESA}`)
-            .then(res => res.json())
-            .then(dados => {
-
-                console.log(dados);
-
-                sessionStorage.setItem('ESTUFAS', JSON.stringify(dados));
-
-                cardAquarios.innerHTML = "";
-
-                dados.forEach(estufa => {
-
-                    cardAquarios.innerHTML += `
-<div class="card-aquario">
-
-    <div class="title-aquario">
-        <h1>${estufa.nomeEstufa}</h1>
-    </div>
-
-    <div class="desc-aquario">
-
-        <div class="temperatura">
-            <p>${estufa.temperatura}°C</p>
-        </div>
-
-        <div class="umidade">
-            <p>${estufa.umidade}%</p>
-        </div>
-
-    </div>
-
-    <div class="status-estufa">
-
-    <p class="${estufa.statusTemperatura.includes('Alerta') ? 'alerta' : 'ok'}">
-        <b>Temperatura:</b> ${estufa.statusTemperatura}
-    </p>
-
-    <p class="${estufa.statusUmidade.includes('Alerta') ? 'alerta' : 'ok'}">
-        <b>Umidade:</b> ${estufa.statusUmidade}
-    </p>
-
-</div>
-
-</div>
-`;
-                });
-
-            });
-    }
-
+  function buscarEstufas() {
+    console.log("FK_EMPRESA:", sessionStorage.FK_EMPRESA);
+    fetch(`/estufas/${sessionStorage.FK_EMPRESA}`)
+      .then(res => res.json())
+      .then(dados => {
+        console.log(dados);
+        sessionStorage.setItem('ESTUFAS', JSON.stringify(dados));
+        cardAquarios.innerHTML = "";
+        dados.forEach(estufa => {
+          cardAquarios.innerHTML += `
+            <div class="card-aquario">
+              <div class="title-aquario">
+                <h1>${estufa.nomeEstufa}</h1>
+              </div>
+              <div class="desc-aquario">
+                <div class="temperatura"><p>${estufa.temperatura}°C</p></div>
+                <div class="umidade"><p>${estufa.umidade}%</p></div>
+              </div>
+              <div class="status-estufa">
+                <p class="${estufa.statusTemperatura.includes('Alerta') ? 'alerta' : 'ok'}">
+                  <b>Temperatura:</b> ${estufa.statusTemperatura}
+                </p>
+                <p class="${estufa.statusUmidade.includes('Alerta') ? 'alerta' : 'ok'}">
+                  <b>Umidade:</b> ${estufa.statusUmidade}
+                </p>
+              </div>
+            </div>
+          `;
+        });
+      });
+  }
 </script>
-
 </html>
