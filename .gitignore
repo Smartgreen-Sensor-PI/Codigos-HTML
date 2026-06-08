@@ -5,4 +5,4 @@ package-lock.json
 .env-dev
 .env
 
-Site_Institucional/BobIA/
+Site_Institucional/BobIA/.env
