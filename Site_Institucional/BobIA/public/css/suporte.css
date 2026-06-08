@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 /* ==========================================================================
    CONFIGURAÇÕES GERAIS E PALETA DE CORES (VIBES FAZENDA / ESTUFA DE TOMATE)
    ========================================================================== */
@@ -5,28 +6,40 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Lato  ', sans-serif;
 }
 
 :root {
-    --bg-fazenda: #f4f7f4;         /* Verde esbranquiçado de fundo (ar limpo) */
-    --verde-estufa: #e2ede2;       /* Verde claro para os painéis principais */
-    --verde-folha: #6bb07f;        /* Verde escuro para textos e destaques */
-    --verde-bbroto: #88c096;       /* Verde intermediário para botões e detalhes */
-    --marrom-terra: #5c4033;       /* Marrom suave para o menu lateral */
-    --palha: #fcf9f2;              /* Cor palha/creme para os cards internos */
-    
+    --bg-fazenda: #f4f7f4;
+    --verde-estufa: #e2ede2;
+    --verde-folha: #6bb07f;
+    /* Verde escuro para textos e destaques */
+    --verde-bbroto: #88c096;
+    /* Verde intermediário para botões e detalhes */
+    --marrom-terra: #5c4033;
+    /* Marrom suave para o menu lateral */
+    --palha: #fcf9f2;
+    /* Cor palha/creme para os cards internos */
+
     /* Cores Alerta Adaptadas à Estufa */
-    --tomate-maduro: #d9534f;      /* Perigo Quente / Tomate maduro demais */
-    --caqui-alerta: #f0ad4e;       /* Alerta Quente */
-    --ideal-verde: #5cb85c;        /* Ideal */
-    --orvalho-alerta: #5bc0de;     /* Alerta Frio */
-    --geada-perigo: #6f859c;       /* Perigo Frio */
+    --tomate-maduro: #d9534f;
+    /* Perigo Quente / Tomate maduro demais */
+    --caqui-alerta: #f0ad4e;
+    /* Alerta Quente */
+    --ideal-verde: #5cb85c;
+    /* Ideal */
+    --orvalho-alerta: #5bc0de;
+    /* Alerta Frio */
+    --geada-perigo: #6f859c;
+    /* Perigo Frio */
 }
 
 body {
     background-color: var(--bg-fazenda);
     color: var(--marrom-terra);
+    overflow-y: scroll;
+    overflow-x: hidden;
+
 }
 
 /* Estrutura Principal Flex */
@@ -37,26 +50,25 @@ body {
     overflow: hidden;
 }
 
-/* ==========================================================================
-   HEADER LATERAL (MENU ESQUERDO) - ESTILO MADEIRA/TERRA SUAVE
-   ========================================================================== */
+/* HEADER LATERAL (MENU ESQUERDO) - ESTILO MADEIRA/TERRA SUAVE */
 .header-left {
-    width: 25%;
-    background-color: var(--marrom-terra);
-    color: var(--palha);
+    width: 22%;
+    background: #2d5a2d;
+    color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.05);
+    padding: 36px 20px;
+    flex-shrink: 0;
 }
 
 .header-left h1 {
     font-size: 28px;
     font-weight: 700;
-    color: #ffd8a8; /* Tom sutil de flor de tomate */
+    color: #ffd8a8;
+    /* Tom sutil de flor de tomate */
     margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .header-left .hello {
@@ -72,7 +84,8 @@ body {
 }
 
 /* Botões do Menu Lateral */
-.btn-nav, .btn-nav-white {
+.btn-nav,
+.btn-nav-white {
     width: 85%;
     margin: 10px 0;
     border-radius: 12px;
@@ -85,7 +98,8 @@ body {
     color: var(--palha);
 }
 
-.btn-nav h3, .btn-nav-white h3 {
+.btn-nav h3,
+.btn-nav-white h3 {
     font-size: 16px;
     padding: 14px;
     font-weight: 500;
@@ -95,8 +109,9 @@ body {
 /* Estado Ativo (Página Atual) */
 .btn-nav {
     background-color: var(--verde-folha);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
+
 .btn-nav h3 {
     color: white;
     font-weight: 600;
@@ -157,7 +172,8 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.03);
     padding: 30px;
     max-width: 700px;
-    margin: 20px auto; /* Centraliza na tela */
+    margin: 20px auto;
+    /* Centraliza na tela */
     display: flex;
     flex-direction: column;
 }
@@ -181,10 +197,12 @@ body {
     padding: 15px;
     border: 2px solid var(--verde-estufa);
     border-radius: 12px;
-    background-color: var(--palha); /* Fundo creme suave */
+    background-color: var(--palha);
+    /* Fundo creme suave */
     color: var(--marrom-terra);
     font-size: 15px;
-    resize: none; /* Impede o usuário de quebrar o layout puxando a janela */
+    resize: none;
+    /* Impede o usuário de quebrar o layout puxando a janela */
     outline: none;
     transition: all 0.3s ease;
 }
@@ -207,12 +225,14 @@ body {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    align-self: flex-start; /* Alinha o botão à esquerda */
+    align-self: flex-start;
+    /* Alinha o botão à esquerda */
     box-shadow: 0 4px 8px rgba(46, 111, 64, 0.2);
 }
 
 #container button:hover {
-    background-color: #235431; /* Verde um pouco mais escuro no hover */
+    background-color: #235431;
+    /* Verde um pouco mais escuro no hover */
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(46, 111, 64, 0.3);
 }
@@ -232,14 +252,17 @@ body {
 
 /* Caixa de Resposta da IA */
 #resposta {
-    background-color: var(--bg-fazenda); /* Verde bem clarinho de fundo */
-    border-left: 4px solid var(--verde-bbroto); /* Barrinha verde de destaque na esquerda */
+    background-color: var(--bg-fazenda);
+    /* Verde bem clarinho de fundo */
+    border-left: 4px solid var(--verde-bbroto);
+    /* Barrinha verde de destaque na esquerda */
     padding: 15px 20px;
     border-radius: 0 12px 12px 0;
     color: var(--marrom-terra);
     font-size: 15px;
     line-height: 1.6;
-    min-height: 50px; /* Garante que a caixa exista mesmo vazia */
+    min-height: 50px;
+    /* Garante que a caixa exista mesmo vazia */
     transition: all 0.3s ease;
 }
 
@@ -249,4 +272,3 @@ body {
     color: #99aab0;
     font-style: italic;
 }
-
