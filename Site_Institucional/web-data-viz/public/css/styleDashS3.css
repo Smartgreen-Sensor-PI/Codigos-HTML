@@ -27,6 +27,7 @@ body {
   color: #fff;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 36px 20px;
   flex-shrink: 0;
