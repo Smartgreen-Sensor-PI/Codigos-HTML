@@ -27,7 +27,6 @@ body {
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 36px 20px;
   flex-shrink: 0;
@@ -290,7 +289,7 @@ body {
 }
 
 .status-estufa p {
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 300;
   color: #3d5c38;
 }
