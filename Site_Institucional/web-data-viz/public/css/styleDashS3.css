@@ -200,16 +200,6 @@ body {
   margin-top: 12px;
 }
 
-p.alerta {
-    color: red;
-    font-weight: bold;
-}
-
-p.ok {
-    color: green;
-    font-weight: bold;
-}
-
 .item-regua {
   flex: 1;
   text-align: center;
@@ -299,10 +289,14 @@ p.ok {
   gap: 4px;
 }
 
-.status-estufa p {
-  font-size: 13px;
-  font-weight: 300;
-  color: #3d5c38;
+.status-estufa .alerta {
+    color: red !important;
+    font-weight: bold !important;
+}
+
+.status-estufa .ok {
+    color: green !important;
+    font-weight: bold !important;
 }
 
 .cor-alerta {
